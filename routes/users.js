@@ -72,17 +72,18 @@ router.post("/",(ctx,res)  =>{
         let json = await JSON.parse(data)
         Count  = Object.keys(json).length;
         let isTaken =0;
-        if(count != 0){
+        //if(count != 0){
         for (let i = 0; i < count; i++) {
             let isTaken =0;
+            console.log(ctx.body.name)
             if(json[i].name == ctx.body.name){
-                
+                console.log(json[i].name)
                 isTaken =12;
 
                 console.log(isTaken)
                // res.sendStatus(400).send("username is taken")
 
-            } else{
+            }else{
                 if(isTaken == 0){
                     console.log(isTaken)
                     json.push({
@@ -96,7 +97,7 @@ router.post("/",(ctx,res)  =>{
                 }
             }
             
-        }}
+        }
 
        
       
