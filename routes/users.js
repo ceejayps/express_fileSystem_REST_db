@@ -70,7 +70,6 @@ router.post("/",(ctx,res)  =>{
 
     fs.readFile("./Data/users/users.json", async function  (err, data) {
         let json = await JSON.parse(data)
-        console.log (json[3].name);
         Count  = Object.keys(json).length;
         let isTaken = 0
         if(count != 0){
@@ -85,6 +84,18 @@ router.post("/",(ctx,res)  =>{
             }
             
         }}
+
+        if(isTaken == 0){
+            console.log(Count)
+            json.push({
+                id: userId,
+                name: ctx.body.username
+            })
+            //console.log(json)
+            fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
+                if(err) console.log('error', err);})
+                console.log("perfect")
+        }
       
     })
 
