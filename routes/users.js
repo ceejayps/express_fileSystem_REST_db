@@ -65,6 +65,17 @@ router.post("/",(ctx,res) =>{
     let length = 90; 
     for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
     let userId = prefix + randomString + "Z-"+suffex;
+
+    fs.readFile("./Data/users/users.json", "utf8", function (err, data) {
+        var json = JSON.parse(data)
+        json.push(
+            'id: ' + uuid,
+            "username:" + ctx.body.username
+        )
+    
+        fs.writeFile("results.json", JSON.stringify(json))
+    })
+
     res.send(JSON.stringify( {uuid:userId, username: ctx.body.username}))
 
 })
