@@ -1,8 +1,11 @@
 const express = require("express");
+const { json } = require("express/lib/response");
+const fs = require("fs");
+const { send } = require("process");
 
 const router = express.Router()
 
-router.get("/users",(req,res)=> {
+router.get("/",(req,res)=> {
 
     let user;
 
@@ -18,9 +21,11 @@ router.get("/users",(req,res)=> {
           for (var i = 0, l = Object.keys(user).length; i < l; i++){
            if (user[i].id === req.query.id) {
              res.send( JSON.stringify( user[i]));
+           }else{
+            res.send(JSON.stringify(user))
            }
          }
-         res.send(JSON.stringify(users))
+         
     });
 
 })
