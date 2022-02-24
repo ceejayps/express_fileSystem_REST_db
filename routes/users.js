@@ -66,14 +66,16 @@ router.post("/",(ctx,res)  =>{
     for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
     let userId = prefix + randomString + "Z-"+suffex;
 
-    fs.readFile("./Data/users/users.json", "utf8", async function  (err, data) {
+    fs.readFile("./Data/users/users.json", async function  (err, data) {
         var json = await JSON.parse(data)
-        json.push(
-            'id: ' + userId,
-            "username:" + ctx.body.username
-        )
-    
-        fs.writeFile("./Data/users/users.json", JSON.stringify(json))
+       
+        json.push({
+            id: userId,
+            name: ctx.body.username
+        })
+        console.log(json)
+        fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
+            if(err) console.log('error', err);})
     })
 
     res.send(JSON.stringify( {uuid:userId, username: ctx.body.username}))
