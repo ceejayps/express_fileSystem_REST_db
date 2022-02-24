@@ -59,12 +59,12 @@ router.post("/",(ctx,res) =>{
     let randomString = ''
     const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-1234567890';
     const charactersLength = characters.length;
-    const prefix = "UUID";
+    const prefix = "UUID-I";
     const suffex = ctx.body.username;
 
     let length = 90; 
     for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
-    let userId = prefix + randomString + suffex;
+    let userId = prefix + randomString + "Z-"+suffex;
     res.send(userId)
 
 })
