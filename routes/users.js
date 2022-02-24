@@ -95,7 +95,7 @@ router.post("/",(ctx,res)  =>{
                     //console.log(json)
                     fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
                         if(err) console.log('error', err);})
-                        console.log("perfect")
+                        console.log("not first")
                 }
             }
             
@@ -107,7 +107,7 @@ router.post("/",(ctx,res)  =>{
             //console.log(json)
             fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
                 if(err) console.log('error', err);})
-                console.log("perfect")
+                console.log("first")
         }
 
        
