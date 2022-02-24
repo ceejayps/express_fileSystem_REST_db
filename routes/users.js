@@ -1,3 +1,4 @@
+const { count } = require("console");
 const express = require("express");
 const { json } = require("express/lib/response");
 const fs = require("fs");
@@ -68,19 +69,30 @@ router.post("/",(ctx,res)  =>{
     let userId = prefix + randomString + "Z-"+suffex;
 
     fs.readFile("./Data/users/users.json", async function  (err, data) {
-        var json = await JSON.parse(data)
-        Count  = Object.keys(data).length;
-      console.log(Count)
-        json.push({
-            id: userId,
-            name: ctx.body.username
-        })
-        console.log(json)
-        fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
-            if(err) console.log('error', err);})
+        let json = await JSON.parse(data)
+       console.log (json[3].name);
+        Count  = Object.keys(json).length;
+        for (let i = 0; i < count; i++) {
+            if(json[i].name == ctx.body.username){
+                
+                console.log("taken");
+
+            }else{
+                console.log(Count)
+                json.push({
+                    id: userId,
+                    name: ctx.body.username
+                })
+                //console.log(json)
+                fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
+                    if(err) console.log('error', err);})
+                    console.log("perfect")
+            }
+            
+        }
+      
     })
 
-    res.send(Count)
 
 })
 
