@@ -2,6 +2,8 @@ const express = require ("express");
 const { json } = require("express/lib/response");
 const fs = require("fs");
 const { send } = require("process");
+const userRouter = require("./routes/users")
+app.use("/user", userRouter);
 
 const app = express();
 
