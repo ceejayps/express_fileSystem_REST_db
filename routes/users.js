@@ -79,6 +79,7 @@ router.post("/",(ctx,res)  =>{
             console.log(ctx.body.name)
             if(json[i].name == ctx.body.name){
                 console.log( "username is already taken taken value is " +isTaken)
+                res.sendStatus(400).send("username is already taken")
                 console.log("this is the value of i " + i)
                 console.log(json[i].name)
                 isTaken ++;
