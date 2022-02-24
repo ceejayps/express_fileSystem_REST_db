@@ -73,6 +73,7 @@ router.post("/",(ctx,res)  =>{
         Count  = Object.keys(json).length;
         let isTaken =0;
         if(count != 0){
+            console.log(count)
         for (let i = 0; i < count; i++) {
             let isTaken =0;
             console.log(ctx.body.name)
