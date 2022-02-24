@@ -92,7 +92,7 @@ router.post("/",(ctx,res)  =>{
                         
                         name: ctx.body.name
                     })
-                    //console.log(json)
+                    console.log("not first")
                     fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
                         if(err) console.log('error', err);})
                         console.log("not first")
@@ -104,10 +104,10 @@ router.post("/",(ctx,res)  =>{
                 id: userId,
                 name: ctx.body.name
             })
-            //console.log(json)
-            fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
-                if(err) console.log('error', err);})
-                console.log("first")
+            console.log("first")
+            // fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
+            //     if(err) console.log('error', err);})
+            //     console.log("first")
         }
 
        
