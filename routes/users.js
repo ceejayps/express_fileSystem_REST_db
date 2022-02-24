@@ -88,7 +88,8 @@ router.post("/",(ctx,res)  =>{
                 if(isTaken == 0){
                     console.log(isTaken)
                     json.push({
-                        id: userId,
+                        id: userId, 
+                        
                         name: ctx.body.name
                     })
                     //console.log(json)
