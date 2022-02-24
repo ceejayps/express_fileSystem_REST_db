@@ -71,16 +71,18 @@ router.post("/",(ctx,res)  =>{
     fs.readFile("./Data/users/users.json", async function  (err, data) {
         let json = await JSON.parse(data)
         Count  = Object.keys(json).length;
-        let isTaken = 0
+        let isTaken =0;
         if(count != 0){
         for (let i = 0; i < count; i++) {
-            if(json[i].name == null || json[1].name != ctx.body.username){
+            if(json[i].name == null || json[i].name != ctx.body.username){
                 
                 
 
             } else{
-               isTaken ++
+               isTaken =12;
+               
                console.log(isTaken)
+               res.sendStatus(400).send("username is taken")
             }
             
         }}
