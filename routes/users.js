@@ -47,7 +47,7 @@ router.get("/:id",(req,res)=> {
            if (user[i].id === req.params.id) {
              res.send( JSON.stringify( user[i]));
            }else{
-            res.send(JSON.stringify({message = "user not found"}))
+            res.send({message = "user not found"})
            }
          }
          
