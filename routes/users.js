@@ -65,7 +65,7 @@ router.post("/",(ctx,res) =>{
     let length = 90; 
     for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
     let userId = prefix + randomString + "Z-"+suffex;
-    res.send(JSON.stringify(ctx.body + {uuid:userId}))
+    res.send(JSON.stringify( {uuid:userId +" " +ctx.body}))
 
 })
 
