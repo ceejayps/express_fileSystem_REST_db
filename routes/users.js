@@ -72,7 +72,7 @@ router.post("/",(ctx,res)  =>{
         let json = await JSON.parse(data)
         Count  = Object.keys(json).length;
         let isTaken =0;
-        //if(count != 0){
+        if(count != 0){
         for (let i = 0; i < count; i++) {
             let isTaken =0;
             console.log(ctx.body.name)
@@ -97,7 +97,7 @@ router.post("/",(ctx,res)  =>{
                 }
             }
             
-        }
+        }}
 
        
       
