@@ -78,6 +78,7 @@ router.post("/",(ctx,res)  =>{
            console.log(isTaken)
             console.log(ctx.body.name)
             if(json[i].name == ctx.body.name){
+                console.log("this is the value of i " + i)
                 console.log(json[i].name)
                 isTaken ++;
 
@@ -86,7 +87,7 @@ router.post("/",(ctx,res)  =>{
 
             }else{
                 console.log(isTaken)
-                if(isTaken == 0){
+                if(isTaken == 0 && i == Count -1 ){
                     console.log(isTaken)
                     json.push({
                         id: userId, 
