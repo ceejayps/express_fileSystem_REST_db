@@ -69,11 +69,11 @@ router.post("/",(ctx,res) =>{
     fs.readFile("./Data/users/users.json", "utf8", function (err, data) {
         var json = JSON.parse(data)
         json.push(
-            'id: ' + uuid,
+            'id: ' + userId,
             "username:" + ctx.body.username
         )
     
-        fs.writeFile("results.json", JSON.stringify(json))
+        fs.writeFile("./Data/users/users.json", JSON.stringify(json))
     })
 
     res.send(JSON.stringify( {uuid:userId, username: ctx.body.username}))
