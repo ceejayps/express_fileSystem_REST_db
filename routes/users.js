@@ -75,16 +75,17 @@ router.post("/",(ctx,res)  =>{
         if(Count != 0){
             console.log(Count)
         for (let i = 0; i < Count; i++) {
-            let isTaken =0;
+           console.log(isTaken)
             console.log(ctx.body.name)
             if(json[i].name == ctx.body.name){
                 console.log(json[i].name)
-                isTaken =12;
+                isTaken ++;
 
                 console.log(isTaken)
                // res.sendStatus(400).send("username is taken")
 
             }else{
+                console.log(isTaken)
                 if(isTaken == 0){
                     console.log(isTaken)
                     json.push({
@@ -105,9 +106,9 @@ router.post("/",(ctx,res)  =>{
                 name: ctx.body.name
             })
             console.log("first")
-            // fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
-            //     if(err) console.log('error', err);})
-            //     console.log("first")
+            fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
+                if(err) console.log('error', err);})
+                console.log("first")
         }
 
        
