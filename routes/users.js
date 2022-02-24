@@ -55,4 +55,8 @@ router.get("/:id",(req,res)=> {
 
 })
 
+router.post("/",(ctx,res) =>{
+    res.send(ctx.body)
+})
+
 module.exports = router
