@@ -72,9 +72,9 @@ router.post("/",(ctx,res)  =>{
         let json = await JSON.parse(data)
         Count  = Object.keys(json).length;
         let isTaken =0;
-        if(count != 0){
-            console.log(count)
-        for (let i = 0; i < count; i++) {
+        if(Count != 0){
+            console.log(Count)
+        for (let i = 0; i < Count; i++) {
             let isTaken =0;
             console.log(ctx.body.name)
             if(json[i].name == ctx.body.name){
@@ -98,7 +98,16 @@ router.post("/",(ctx,res)  =>{
                 }
             }
             
-        }}
+        }}else{
+            json.push({
+                id: userId,
+                name: ctx.body.name
+            })
+            //console.log(json)
+            fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
+                if(err) console.log('error', err);})
+                console.log("perfect")
+        }
 
        
       
