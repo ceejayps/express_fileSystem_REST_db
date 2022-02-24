@@ -61,7 +61,7 @@ router.post("/",(ctx,res)  =>{
     const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-1234567890';
     const charactersLength = characters.length;
     const prefix = "UUID-I";
-    const suffex = ctx.body.username;
+    const suffex = ctx.body.name;
     let Count;
 
     let length = 90; 
