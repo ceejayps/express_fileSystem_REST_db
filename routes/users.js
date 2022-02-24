@@ -74,13 +74,13 @@ router.post("/",(ctx,res)  =>{
         let isTaken =0;
         if(count != 0){
         for (let i = 0; i < count; i++) {
-            if(json[i].name == null || json[i].name != ctx.body.username){
+            if(json[i].name == null || json[i].name != ctx.body.name){
                 
                 
 
             } else{
                isTaken =12;
-               
+
                console.log(isTaken)
                res.sendStatus(400).send("username is taken")
             }
