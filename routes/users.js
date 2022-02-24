@@ -79,7 +79,7 @@ router.post("/",(ctx,res)  =>{
             console.log(ctx.body.name)
             if(json[i].name == ctx.body.name){
                 console.log( "username is already taken taken value is " +isTaken)
-                res.sendStatus(400).send("username is already taken")
+                res.status(400).json({'error':'User already exists.'});
                 console.log("this is the value of i " + i)
                 console.log(json[i].name)
                 isTaken ++;
@@ -99,6 +99,7 @@ router.post("/",(ctx,res)  =>{
                     fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
                         if(err) console.log('error', err);})
                         console.log("not first")
+                        res.status(201).json({'message':'User Created Successfully.'});
                 }
             }
             
@@ -111,6 +112,7 @@ router.post("/",(ctx,res)  =>{
             fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
                 if(err) console.log('error', err);})
                 console.log("first")
+                res.status(201).json({'message':'User Created Successfully.'});
         }
 
        
@@ -127,7 +129,6 @@ router.post("/",(ctx,res)  =>{
     //     if(err) console.log('error', err);})
     //     console.log("perfect")
 
-res.send()
 })
 
 module.exports = router
