@@ -90,7 +90,6 @@ router.post("/",(ctx,res)  =>{
                     console.log(isTaken)
                     json.push({
                         id: userId, 
-                        
                         name: ctx.body.name
                     })
                     console.log("not first")
