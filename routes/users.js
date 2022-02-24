@@ -61,6 +61,7 @@ router.post("/",(ctx,res)  =>{
     const charactersLength = characters.length;
     const prefix = "UUID-I";
     const suffex = ctx.body.username;
+    let Count;
 
     let length = 90; 
     for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
@@ -68,7 +69,8 @@ router.post("/",(ctx,res)  =>{
 
     fs.readFile("./Data/users/users.json", async function  (err, data) {
         var json = await JSON.parse(data)
-       
+        Count  = Object.keys(data).length;
+      console.log(Count)
         json.push({
             id: userId,
             name: ctx.body.username
@@ -78,7 +80,7 @@ router.post("/",(ctx,res)  =>{
             if(err) console.log('error', err);})
     })
 
-    res.send(JSON.stringify( {uuid:userId, username: ctx.body.username}))
+    res.send(Count)
 
 })
 
