@@ -23,7 +23,7 @@ router.get("/",(req,res)=> {
            if (user[i].id === req.query.id) {
              res.send( JSON.stringify( user[i]));
            }else{
-            res.send(JSON.stringify(user))
+            res.json(JSON.stringify(user))
            }
          }
          
