@@ -70,30 +70,35 @@ router.post("/",(ctx,res)  =>{
 
     fs.readFile("./Data/users/users.json", async function  (err, data) {
         let json = await JSON.parse(data)
-       console.log (json[3].name);
+        console.log (json[3].name);
         Count  = Object.keys(json).length;
+        let isTaken = 0
+        if(count != 0){
         for (let i = 0; i < count; i++) {
-            if(json[i].name == ctx.body.username){
+            if(json[i].name == null || json[1].name != ctx.body.username){
                 
-                console.log("taken");
+                
 
-            }else{
-                console.log(Count)
-                json.push({
-                    id: userId,
-                    name: ctx.body.username
-                })
-                //console.log(json)
-                fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
-                    if(err) console.log('error', err);})
-                    console.log("perfect")
+            } else{
+               isTaken ++
+               console.log(isTaken)
             }
             
-        }
+        }}
       
     })
 
+    // console.log(Count)
+    // json.push({
+    //     id: userId,
+    //     name: ctx.body.username
+    // })
+    // //console.log(json)
+    // fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
+    //     if(err) console.log('error', err);})
+    //     console.log("perfect")
 
+res.send()
 })
 
 module.exports = router
