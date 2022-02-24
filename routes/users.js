@@ -55,7 +55,7 @@ router.get("/:id",(req,res)=> {
 
 })
 
-router.post("/",(ctx,res) =>{
+router.post("/",(ctx,res)  =>{
     let randomString = ''
     const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-1234567890';
     const charactersLength = characters.length;
@@ -66,8 +66,8 @@ router.post("/",(ctx,res) =>{
     for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
     let userId = prefix + randomString + "Z-"+suffex;
 
-    fs.readFile("./Data/users/users.json", "utf8", function (err, data) {
-        var json = JSON.parse(data)
+    fs.readFile("./Data/users/users.json", "utf8", async function  (err, data) {
+        var json = await JSON.parse(data)
         json.push(
             'id: ' + userId,
             "username:" + ctx.body.username
