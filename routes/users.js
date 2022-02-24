@@ -62,7 +62,7 @@ router.post("/",(ctx,res) =>{
     const prefix = "UUID";
     const suffex = ctx.body.username;
 
-    let length = 30; 
+    let length = 90; 
     for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
     let userId = prefix + randomString + suffex;
     res.send(userId)
