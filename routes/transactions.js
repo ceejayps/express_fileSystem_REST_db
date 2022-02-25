@@ -48,6 +48,35 @@ transactions.get("/", async (ctx,res)=>{
         let Count = files.length;
        // res.send(""+Count)
         let i =0;
+
+
+for (let i = 0; i < files.length; i++) {
+    console.log(files[i])
+    console.log(i)
+
+       fs.readFile(`Data/transactions/${files[i]}`, "utf8", (err, jsonString)  =>  {
+            if (err) {
+                console.log("File read failed:", err);
+               
+            }
+
+            data.push(jsonString)
+            
+            if(i == files.length){
+                
+                console.log(jsonString)
+
+                //res.send(JSON.parse (data))
+            }
+    
+             
+        });
+          
+       
+    
+}
+
+
         // files.forEach(file => {
         //     i++;
         //   console.log(i);
