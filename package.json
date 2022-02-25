@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "devStart": "nodemon server.js",
-    "Start":"node server.js",
-    "build":"build"
+    "Start":"node server.js"
+   
 
   },
   "keywords": [],
