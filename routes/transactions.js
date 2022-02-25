@@ -13,6 +13,10 @@ const transactions = express.Router()
 transactions.post("/",(ctx,res)=>{
     let { amount, type, via, event, den } = ctx.body;
     console.log(amount) // data sent via the body for the request
+    fs.appendFile('Data/transactions/file.json', 'Hello content!', function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+      });
 
     res.json({amount:amount, type, via,event,den})
 })
