@@ -41,7 +41,6 @@ router.get("/:id",(req,res)=> {
         }
         console.log("File data:", jsonString);
           user = await JSON.parse(jsonString);
-          console.log("this is users ..." +user[1].name);
 
           for (var i = 0, l = Object.keys(user).length; i < l; i++){
            if (user[i].id === req.params.id) {
