@@ -20,7 +20,7 @@ router.get("/",(req,res)=> {
            if (user[i].id === req.query.id) {
              res.json(user[i]);
            }else{
-               if( i == Object.keys(user).length){
+               if( i == Object.keys(user).length -1){
             res.json(user)
         }
            }
