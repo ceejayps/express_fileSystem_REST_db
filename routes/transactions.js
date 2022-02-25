@@ -7,6 +7,7 @@ const admin = { name : "Admin", id: "00", type: "admin", discription: "admin use
 const authenticated = { name : "Authenticated", id: "01", type: "user", discription: "default auth user" }
 const months = ["Jan", "Feb", "Far","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 const days = [ "Sunday", "Monday", "Tuedays", "Wednesday","Thursday", "Friday", "Saturday"]
+const TransactionFolder = './Data/transactions/';
 
 const transactions = express.Router()
 
@@ -25,7 +26,7 @@ transactions.post("/",(ctx,res)=>{
         Amount:amount,
         type : type,
         user: name,
-        date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear() +"\\n",
+        date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
     }
 
     
@@ -37,6 +38,47 @@ transactions.post("/",(ctx,res)=>{
       });
 
     res.json({TUID})
+})
+
+transactions.get("/", async (ctx,res)=>{
+    let data = [];
+    //console.log(files)
+
+   fs.readdir(TransactionFolder, (err, files) => {
+        let Count = files.length;
+       // res.send(""+Count)
+        let i =0;
+        // files.forEach(file => {
+        //     i++;
+        //   console.log(i);
+        //   //files.push(file)
+          
+        //   fs.readFile(`Data/transactions/${file}`, "utf8", (err, jsonString)  =>  {
+        //     if (err) {
+        //         console.log("File read failed:", err);
+               
+        //     }
+
+        //     data.push(jsonString)
+            
+        //     if(i == Count){
+                
+        //         console.log(jsonString)
+
+        //         //res.send(JSON.parse (data))
+        //     }
+    
+             
+        // });
+          
+        // });
+       // console.log(files)
+        
+
+      });
+      
+
+
 })
 
 module.exports = transactions
