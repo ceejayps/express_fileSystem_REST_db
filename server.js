@@ -13,4 +13,4 @@ app.get("/", (req,res)=>{})
 
 const userRouter = require("./routes/users")
 app.use("/users", userRouter);
-app.listen(1876)
+app.listen(process.env.PORT || 1876)
