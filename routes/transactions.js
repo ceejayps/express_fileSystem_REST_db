@@ -13,6 +13,8 @@ const transactions = express.Router()
 transactions.post("/",(ctx,res)=>{
     let { amount, type, via, event, den } = ctx.body;
     console.log(amount) // data sent via the body for the request
+
+    res.json({amount:amount, type, via,event,den})
 })
 
 module.exports = transactions
