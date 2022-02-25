@@ -41,48 +41,70 @@ transactions.post("/",(ctx,res)=>{
 })
 
 transactions.get("/", async (ctx,res)=>{
-    let data = [];
-    //console.log(files)
-
-   fs.readdir(TransactionFolder, (err, files) => {
-        let Count = files.length;
-       // res.send(""+Count)
-        let i =0;
 
 
-for (let i = 0; i < files.length; i++) {
-    console.log(files[i])
-    console.log(i)
+readFiles(TransactionFolder,)
 
-       fs.readFile(`Data/transactions/${files[i]}`, "utf8", (err, jsonString)   =>   {
-            if (err) {
-                console.log("File read failed:", err);
+
+    function readFiles(dirname, onFileContent, onError) {
+        fs.readdir(dirname, function(err, filenames) {
+          if (err) {
+            onError(err);
+            return;
+          }
+          filenames.forEach(function(filename) {
+            fs.readFile(dirname + filename, 'utf-8', function(err, content) {
+              if (err) {
+                onError(err);
+                return;
+              }
+              onFileContent(filename, content);
+            });
+          });
+        });
+      }
+//     let data = [];
+//     //console.log(files)
+
+//    fs.readdir(TransactionFolder, (err, files) => {
+//         let Count = files.length;
+//        // res.send(""+Count)
+//         let i =0;
+
+
+// for (let i = 0; i < files.length; i++) {
+//     console.log(files[i])
+//     console.log(i)
+
+//        fs.readFile(`Data/transactions/${files[i]}`, "utf8", (err, jsonString)   =>   {
+//             if (err) {
+//                 console.log("File read failed:", err);
                
-            }
+//             }
 
-           data = data.push(jsonString)
-            console.log(jsonString)
+//            data = data.push(jsonString)
+//             console.log(jsonString)
             
            
 
     
              
-        },
+//         },
 
         
         
-        );
+//         );
 
-        if(i == files.length-1){
+//         if(i == files.length-1){
                 
                 
 
-            res.send(data)
-        }
+//             res.send( awaitndata)
+//         }
           
        
     
-}
+// }
 
 
         // files.forEach(file => {
@@ -112,7 +134,7 @@ for (let i = 0; i < files.length; i++) {
        // console.log(files)
         
 
-      });
+     // });
       
 
 
