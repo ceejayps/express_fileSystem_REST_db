@@ -8,4 +8,11 @@ const authenticated = { name : "Authenticated", id: "01", type: "user", discript
 const months = ["Jan", "Feb", "Far","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 const days = [ "Sunday", "Monday", "Tuedays", "Wednesday","Thursday", "Friday", "Saturday"]
 
-const transactiona = express.Router()
+const transactions = express.Router()
+
+transactions.post("/",(ctx,res)=>{
+    let { amount, type, via, event, den } = ctx.body;
+    console.log(amount) // data sent via the body for the request
+})
+
+module.exports = transactions
