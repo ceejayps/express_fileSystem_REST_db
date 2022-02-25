@@ -31,7 +31,7 @@ transactions.post("/",(ctx,res)=>{
     
     
     console.log(amount) // data sent via the body for the request
-    fs.appendFile(`Data/transactions/${TUID}.json`, JSON.stringify({body}), function (err) {
+    fs.appendFile(`Data/transactions/${TUID}.json`, JSON.stringify(body), function (err) {
         if (err) throw err;
         console.log('Saved!');
       });
