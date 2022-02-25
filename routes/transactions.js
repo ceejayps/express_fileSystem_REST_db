@@ -11,15 +11,32 @@ const days = [ "Sunday", "Monday", "Tuedays", "Wednesday","Thursday", "Friday", 
 const transactions = express.Router()
 
 transactions.post("/",(ctx,res)=>{
-    let TUID;
-    let { amount, type, via, event, den } = ctx.body;
+    let { amount, type, name } = ctx.body;
+    let randomString = ''
+    const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-1234567890';
+    const charactersLength = characters.length;
+    const prefix = "TUID-I";
+    const suffex = ctx.body.name;
+    let length = 30; 
+    for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
+    let TUID = prefix + randomString + "Z-"+suffex;
+    let body ={
+        id: TUID + "\\n",
+        Amount:amount+ "\\n",
+        type : type + "\\n",
+        user: name+ "\\n",
+        date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear() +"\\n",
+    }
+
+    
+    
     console.log(amount) // data sent via the body for the request
-    fs.appendFile('Data/transactions/file.json', JSON.stringify({}), function (err) {
+    fs.appendFile(`Data/transactions/${TUID}.json`, JSON.stringify({body}), function (err) {
         if (err) throw err;
         console.log('Saved!');
       });
 
-    res.json({amount:amount, type, via,event,den})
+    res.json({TUID})
 })
 
 module.exports = transactions
