@@ -11,9 +11,10 @@ const days = [ "Sunday", "Monday", "Tuedays", "Wednesday","Thursday", "Friday", 
 const transactions = express.Router()
 
 transactions.post("/",(ctx,res)=>{
+    let TUID;
     let { amount, type, via, event, den } = ctx.body;
     console.log(amount) // data sent via the body for the request
-    fs.appendFile('Data/transactions/file.json', 'Hello content!', function (err) {
+    fs.appendFile('Data/transactions/file.json', JSON.stringify({}), function (err) {
         if (err) throw err;
         console.log('Saved!');
       });
