@@ -39,7 +39,7 @@ router.get("/:id",(req,res)=> {
             console.log("File read failed:", err);
             return;
         }
-        console.log("File data:", jsonString);
+       
           user = await JSON.parse(jsonString);
 
           for (var i = 0, l = Object.keys(user).length; i < l; i++){
