@@ -21,10 +21,10 @@ transactions.post("/",(ctx,res)=>{
     for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
     let TUID = prefix + randomString + "Z-"+suffex;
     let body ={
-        id: TUID + "\\n",
-        Amount:amount+ "\\n",
-        type : type + "\\n",
-        user: name+ "\\n",
+        id: TUID,
+        Amount:amount,
+        type : type,
+        user: name,
         date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear() +"\\n",
     }
 
