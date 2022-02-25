@@ -15,15 +15,14 @@ router.get("/",(req,res)=> {
             console.log("File read failed:", err);
             return;
         }
-        console.log("File data:", jsonString);
           user = await JSON.parse(jsonString);
-          console.log("this is users ..." +user[1].name);
-
           for (var i = 0, l = Object.keys(user).length; i < l; i++){
            if (user[i].id === req.query.id) {
-             res.send( JSON.stringify( user[i]));
+             res.json(user[i]);
            }else{
-            res.json(JSON.stringify(user))
+               if( i == Object.keys(user).length){
+            res.json(user)
+        }
            }
          }
          
@@ -46,9 +45,9 @@ router.get("/:id",(req,res)=> {
 
           for (var i = 0, l = Object.keys(user).length; i < l; i++){
            if (user[i].id === req.params.id) {
-             res.send( JSON.stringify( user[i]));
-           }else{
-            res.send({message : "user not found"})
+             res.json(user[i]);
+           }else{if(i == Object.keys(user).length ){
+            res.json({message : "user not found"})}
            }
          }
          
