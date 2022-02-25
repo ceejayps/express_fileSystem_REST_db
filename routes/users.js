@@ -21,7 +21,10 @@ router.get("/",(req,res)=> {
              res.json(user[i]);
            }else{
                if( i == Object.keys(user).length -1){
-            res.json(user)
+                   if(req.query.id != null){
+                    res.json({message : "user not found"})
+                   } else{
+            res.json(user)}
         }
            }
          }
