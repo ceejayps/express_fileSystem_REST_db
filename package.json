@@ -2,9 +2,12 @@
   "name": "first_express",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "Start":"node server.js",
+    "build":"build"
+
   },
   "keywords": [],
   "author": "",
@@ -15,7 +18,7 @@
     "lambda": "^0.10.3",
     "mysql": "^2.18.1",
     "netlify": "^11.0.0",
-    "nodemon": "^2.0.15",
-    "serverless-http": "^2.7.0"
+    "nodemon": "^2.0.15"
+    
   }
 }
