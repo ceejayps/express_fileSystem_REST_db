@@ -41,12 +41,7 @@ transactions.post("/",(ctx,res)=>{
 })
 
 transactions.get("/", async (ctx,res)=>{
-
-
-
-
-
-    
+     
 //     let data = [];
 //     //console.log(files)
 
@@ -57,7 +52,7 @@ transactions.get("/", async (ctx,res)=>{
 
 
 // for (let i = 0; i < files.length; i++) {
-//     console.log(files[i])
+//     console.log(files[i]) 
 //     console.log(i)
 
 //        fs.readFile(`Data/transactions/${files[i]}`, "utf8", (err, jsonString)   =>   {
