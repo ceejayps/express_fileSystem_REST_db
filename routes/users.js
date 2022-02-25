@@ -110,7 +110,8 @@ router.post("/",(ctx,res)  =>{
         }}else{
             json.push({
                 id: userId,
-                name: ctx.body.name
+                name: ctx.body.name,
+                role: authenticated
             })
             console.log("first")
             fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
