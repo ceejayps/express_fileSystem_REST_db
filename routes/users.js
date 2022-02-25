@@ -6,6 +6,7 @@ const { send } = require("process");
 const admin = { name : "Admin", id: "00", type: "admin", discription: "admin user" }
 const authenticated = { name : "Authenticated", id: "01", type: "user", discription: "default auth user" }
 const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+const days = [ "Sunday", "Monday", "Tuedays", "Wednesday","Thursday", "Friday", "Saturday"]
 
 const router = express.Router()
 
@@ -97,7 +98,7 @@ router.post("/",(ctx,res)  =>{
                     json.push({
                         id: userId, 
                         name: ctx.body.name,
-                        dateCreated:""+ Date.getDay() +" " + months[Date.getMonth()] + " " + Date.getDate() + " "+ Date.getFullYear(),
+                        dateCreated:""+ new Date().getDay() +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
                         role: authenticated
                     })
                     console.log("not first")
@@ -112,7 +113,7 @@ router.post("/",(ctx,res)  =>{
             json.push({
                 id: userId,
                 name: ctx.body.name,
-                dateCreated:""+ Date.getDay() +" " + months[Date.getMonth()] + " " + Date.getDate() + " "+ Date.getFullYear(), 
+                dateCreated:""+ new Date().getDay() +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(), 
                 role: authenticated,
                 
             })
