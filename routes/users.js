@@ -4,7 +4,7 @@ const { json } = require("express/lib/response");
 const fs = require("fs");
 const { send } = require("process");
 const admin = { name : "Admin", id: "00", type: "admin", discription: "admin user" }
-const authenticated = { name : "Authenticate", id: "01", type: "user", discription: "default auth user" }
+const authenticated = { name : "Authenticated", id: "01", type: "user", discription: "default auth user" }
 
 const router = express.Router()
 
@@ -84,7 +84,6 @@ router.post("/",(ctx,res)  =>{
                 console.log( "username is already taken taken value is " +isTaken)
                 res.status(400).json({'error':'User already exists.'});
                 console.log("this is the value of i " + i)
-                console.log(json[i].name)
                 isTaken ++;
 
                 console.log(isTaken)
@@ -111,7 +110,9 @@ router.post("/",(ctx,res)  =>{
             json.push({
                 id: userId,
                 name: ctx.body.name,
-                role: authenticated
+                dateCreated: Date().now,
+                role: authenticated,
+                
             })
             console.log("first")
             fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
