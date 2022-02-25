@@ -54,23 +54,31 @@ for (let i = 0; i < files.length; i++) {
     console.log(files[i])
     console.log(i)
 
-       fs.readFile(`Data/transactions/${files[i]}`, "utf8", (err, jsonString)  =>  {
+       fs.readFile(`Data/transactions/${files[i]}`, "utf8", (err, jsonString)   =>   {
             if (err) {
                 console.log("File read failed:", err);
                
             }
 
-            data.push(jsonString)
+           data = data.push(jsonString)
+            console.log(jsonString)
             
-            if(i == files.length){
-                
-                console.log(jsonString)
+           
 
-                //res.send(JSON.parse (data))
-            }
     
              
-        });
+        },
+
+        
+        
+        );
+
+        if(i == files.length-1){
+                
+                
+
+            res.send(data)
+        }
           
        
     
