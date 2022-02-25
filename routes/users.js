@@ -3,6 +3,8 @@ const express = require("express");
 const { json } = require("express/lib/response");
 const fs = require("fs");
 const { send } = require("process");
+const admin = { name : "Admin", id: "00", type: "admin", discription: "admin user" }
+const authenticated = { name : "Authenticate", id: "01", type: "user", discription: "default auth user" }
 
 const router = express.Router()
 
@@ -94,7 +96,8 @@ router.post("/",(ctx,res)  =>{
                    
                     json.push({
                         id: userId, 
-                        name: ctx.body.name
+                        name: ctx.body.name,
+                        role: authenticated
                     })
                     console.log("not first")
                     fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
