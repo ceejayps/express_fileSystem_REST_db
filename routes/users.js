@@ -98,7 +98,7 @@ router.post("/",(ctx,res)  =>{
                     json.push({
                         id: userId, 
                         name: ctx.body.name,
-                        dateCreated:""+ new Date().getDay() +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
+                        "date Created":""+ days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
                         role: authenticated
                     })
                     console.log("not first")
@@ -113,7 +113,7 @@ router.post("/",(ctx,res)  =>{
             json.push({
                 id: userId,
                 name: ctx.body.name,
-                dateCreated:""+ new Date().getDay() +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(), 
+                dateCreated:""+ days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(), 
                 role: authenticated,
                 
             })
