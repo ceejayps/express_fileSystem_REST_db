@@ -12,5 +12,7 @@ app.get("/", (req,res)=>{})
 
 
 const userRouter = require("./routes/users")
+const transactionsRouter = require("./routes/transactions")
 app.use("/users", userRouter);
+app.use("/transactions", transactionsRouter)
 app.listen(process.env.PORT || 1876)
