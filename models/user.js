@@ -1,36 +1,34 @@
-var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+const mongoose = require('mongoose'),
+  _userSchema = mongoose.Schema;
 
-/**
- * User Schema
- */
-var userSchema = new Schema({
+let userSchema = new _userSchema({
   fullName: {
     type: String,
-    required: [true, "fullname not provided "],
+    required: [true, "smartAss we al know u have a name.. enter it"],
   },
   email: {
     type: String,
-    unique: [true, "email already exists in database!"],
+    unique: [true, "smartAss we already have this email, use another!"],
     lowercase: true,
     trim: true,
-    required: [true, "email not provided"],
+    required: [true, "smartAss we need a email to know it's you"],
     validate: {
       validator: function (v) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
       },
-      message: '{VALUE} is not a valid email!'
+      message: '{VALUE} does this looks like an email to you?!'
     }
 
   },
   role: {
     type: String,
-    enum: ["normal", "admin"],
-    required: [true, "Please specify user role"]
+    enum: ["authUser", "admin"],
+    required: [true, "Please specify user role"],
+    default: "authUser"
   },
   password: {
     type: String,
-    required: true
+    required: [true, 'smartAss we need a password to protect your data']
   },
   created: {
     type: Date,
