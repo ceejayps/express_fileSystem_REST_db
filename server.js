@@ -19,7 +19,7 @@ try {
   handleError(error);
 }
 process.on('unhandledRejection', error => {
-  console.log('unhandledRejection', error.message);
+console.log('unhandledRejection', error.message);
 });
 
 app.use(express.json());
