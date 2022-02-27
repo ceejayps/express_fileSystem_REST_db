@@ -89,4 +89,15 @@ let{name} = req.body
   return res.json({token:token});
  })
 
+
+ transactions.post("/:id",(req,res)=>{
+   let id = req.params.id;
+   let file_content = fs.readFileSync(`Data/transactions/`+id+`.json`);
+var content = JSON.parse(file_content);
+console.log(JSON.parse(file_content))
+var amount = content.Amount;
+  
+  
+   res.send(""+amount);
+   })
 module.exports = transactions
