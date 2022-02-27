@@ -2,6 +2,8 @@ const { count } = require("console");
 const express = require("express");
 const { json } = require("express/lib/response");
 const fs = require("fs");
+var bcrypt = require("bcrypt");
+var jwt = require("jsonwebtoken");
 const { send } = require("process");
 const months = ["Jan", "Feb", "Far","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 const days = [ "Sunday", "Monday", "Tuedays", "Wednesday","Thursday", "Friday", "Saturday"]
@@ -78,6 +80,12 @@ transactions.get("/", async (req,res)=>{
     });
 }
 return res.send(500);
+ })
+
+
+ transactions.get("/test/user",(req,res)=>{
+  var token = jwt.sign({id: 123}, secret.secretToken, { expiresIn: t12345});
+  return res.json({token:token});
  })
 
 module.exports = transactions
