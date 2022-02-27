@@ -152,6 +152,26 @@ router.post('/register',(ctx,res)=>{
     let UUID = `${prefix}${cryptoString}${suffex}`
     console.log(UUID)
 
+    let data = [];
+
+
+    fs.readdir(`Data/users`, (err, files) => {
+        let Count = files.length;
+       // res.send(""+Count)
+        let i =0;
+
+        for (let i = 0; i < files.length; i++) {
+          console.log("pree id number")
+            console.log(files[i]) 
+            console.log("post id number")
+            console.log(i)
+        
+               data.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8"))
+               )}
+
+               res.json( data)
+              })
+
 })
 
 module.exports = router
