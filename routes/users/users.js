@@ -37,8 +37,8 @@ router.post('/register', async (ctx,res)=>{
 
     let existingUserNames = [];
     let emails = [];
-    userEmail = ctx.body.email;
-    userPassword = ctx.body.password;
+   let  userEmail = ctx.body.email;
+  let  userPassword = ctx.body.password;
 
         //check if username is valid
         if(emailRegexp.test(userEmail) == false){
@@ -93,7 +93,8 @@ router.post('/register', async (ctx,res)=>{
 
             // email 
             let recipient = userEmail;
-            const confirmUrl =baseUrl + query_string_params + confirmationToken;
+            const baseUrl = "";
+            const confirmUrl =baseUrl //+ query_string_params + confirmationToken;
             const sgMail = require('@sendgrid/mail')
             sgMail.setApiKey(process.env.SENDGRID_API_KEY)
             const msg = {
@@ -103,9 +104,9 @@ router.post('/register', async (ctx,res)=>{
             personalizations: [{
                 to: { email: recipient },
                 dynamic_template_data: {
-                    confirmUrl: confirmUrl,
-                    username: (user.firstname).charAt(0).toUpperCase() +(user.firstname).slice(1),
-                    usernamee: (user.username).charAt(0).toUpperCase() +(user.username).slice(1)
+                    //confirmUrl: confirmUrl,
+                    // username: (user.firstname).charAt(0).toUpperCase() +(user.firstname).slice(1),
+                    // usernamee: (user.username).charAt(0).toUpperCase() +(user.username).slice(1)
     
                 },
             }],
@@ -118,7 +119,7 @@ router.post('/register', async (ctx,res)=>{
                    res.json({status:"done"})
                  })
                  .catch((error) => {
-                     res.status(500).send()
+                     //res.status(500).send()
                    console.error(error)
                  })
     
