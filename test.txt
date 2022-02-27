@@ -1,1 +1,10 @@
 user model
+username
+firstname
+lastname
+email
+balance
+highscore
+password
+date_created
+date_updated
