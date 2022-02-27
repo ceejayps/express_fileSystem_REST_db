@@ -98,7 +98,6 @@ router.post('/register', async (ctx,res)=>{
 router.post('/login',async(ctx,res)=>{
     let email = ctx.body.email;
     let password = ctx.body.password
-    let _jwt = "jwt"
 
     users = []
     fs.readdir(`Data/users/`, async (err, files) => 
