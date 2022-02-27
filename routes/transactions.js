@@ -3,8 +3,6 @@ const express = require("express");
 const { json } = require("express/lib/response");
 const fs = require("fs");
 const { send } = require("process");
-const admin = { name : "Admin", id: "00", type: "admin", discription: "admin user" }
-const authenticated = { name : "Authenticated", id: "01", type: "user", discription: "default auth user" }
 const months = ["Jan", "Feb", "Far","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 const days = [ "Sunday", "Monday", "Tuedays", "Wednesday","Thursday", "Friday", "Saturday"]
 const TransactionFolder = './Data/transactions/';
@@ -28,9 +26,6 @@ transactions.post("/",(ctx,res)=>{
         user: name,
         date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
     }
-
-    
-    
     console.log(amount) // data sent via the body for the request
     fs.appendFile(`Data/transactions/${TUID}.json`, JSON.stringify(body), function (err) {
         if (err) throw err;
