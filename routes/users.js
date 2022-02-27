@@ -150,7 +150,7 @@ router.post('/register',(ctx,res)=>{
     let UUID = `${prefix}${cryptoString}${suffex}`
     console.log(UUID)
 
-    let userNames = [];
+    let existingUserNames = [];
     let emails = [];
     userEmail = ctx.body.email;
     userPassword = ctx.body.password;
@@ -178,12 +178,12 @@ router.post('/register',(ctx,res)=>{
             console.log("post id number")
             console.log(i)
         
-            userNames.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).username)
+            existingUserNames.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).username)
             emails.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).email)
             }
 
                
-        if(userNames.includes(ctx.body.username)){
+        if(existingUserNames.includes(ctx.body.username)){
         return res.status(400).json({message:"400 error, bad request, user already taken"})
         
         }
@@ -193,7 +193,7 @@ router.post('/register',(ctx,res)=>{
         }
 
 
-               res.json( userNames)
+               res.json( existingUserNames)
               })
 
 })
