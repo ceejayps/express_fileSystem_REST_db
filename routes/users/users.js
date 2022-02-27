@@ -98,7 +98,7 @@ router.post('/register', async (ctx,res)=>{
 router.post('/login',async(ctx,res)=>{
     let email = ctx.body.email;
     let password = ctx.body.password
-    let jwt = "jwt"
+    let _jwt = "jwt"
 
     users = []
     fs.readdir(`Data/users/`, async (err, files) => 
@@ -112,9 +112,9 @@ router.post('/login',async(ctx,res)=>{
                    if(user == null){ return res.status(400).send({message:"user does not exist"})}
                    try {
                     if(await bcrypt.compare(password, user.password)){
-                        var token = jwt.sign({id: user.id, name: user.name, email:user.email, role:user.role.name}, process.env.ACCESS_TOKEN_SECRECT);
+                         let JWT = jwt.sign({id: user.id, name: user.name, email:user.email, role:user.role}, process.env.ACCESS_TOKEN_SECRECT);
 
-                        res.json([jwt,user])
+                        res.json([JWT,user])
                     }
                     else{
                         return res.status(400).send({message:"incorrect password"})
