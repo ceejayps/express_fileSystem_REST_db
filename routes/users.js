@@ -166,7 +166,7 @@ router.post('/register',(ctx,res)=>{
             console.log("post id number")
             console.log(i)
         
-               data.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8"))
+               data.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).name
                )}
 
                res.json( data)
