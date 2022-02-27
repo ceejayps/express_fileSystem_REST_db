@@ -8,4 +8,6 @@ Data/users/
 .gitignore
 .deleted
 routes.deleted
-
+addto.env
+*.env
+addto .env
