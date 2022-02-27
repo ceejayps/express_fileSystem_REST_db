@@ -63,28 +63,31 @@ transactions.get("/", async (req,res)=>{
               })
  })
 
- transactions.get("/test",(req,res)=>{
+ transactions.get("/test/user",(req,res)=>{
   if (req.headers && req.headers.authorization) {
     var authorization = req.headers.authorization.split(' ')[1],
         decoded;
     try {
-        decoded = jwt.verify(authorization, secret.secretToken);
+        decoded = jwt.verify(authorization, process.env.ACCESS_TOKEN_SECRECT);
     } catch (e) {
-        return res.status(401).send('unauthorized');
+        //return res.status(401).send('unauthorized');
+        res.send(authorization)
     }
     var userId = decoded.id;
     // Fetch the user by id 
-    User.findOne({_id: userId}).then(function(user){
+   // User.findOne({_id: userId}).then(function(user){
         // Do something with the user
-        return res.send(200);
-    });
+        return res.send(userId);
+  //  });
 }
 return res.send(500);
  })
 
 
- transactions.get("/test/user",(req,res)=>{
-  var token = jwt.sign({id: 123}, secret.secretToken, { expiresIn: t12345});
+ transactions.post("/test/user",(req,res)=>{
+let{name} = req.body
+
+  var token = jwt.sign({id: name}, process.env.ACCESS_TOKEN_SECRECT);
   return res.json({token:token});
  })
 
