@@ -131,15 +131,6 @@ router.post("/",(ctx,res)  =>{
       
     })
 
-    // console.log(Count)
-    // json.push({
-    //     id: userId,
-    //     name: ctx.body.username
-    // })
-    // //console.log(json)
-    // fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
-    //     if(err) console.log('error', err);})
-    //     console.log("perfect")
 
 })
 
@@ -157,6 +148,7 @@ router.post('/register',(ctx,res)=>{
     userEmail = ctx.body.email;
 
     const emailRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const passwordRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         //check if password is valid
         if(emailRegexp.test(userEmail) == false){
             return res.status(400).json({
@@ -167,7 +159,6 @@ router.post('/register',(ctx,res)=>{
 
     fs.readdir(`Data/users`, (err, files) => {
         
-
         for (let i = 0; i < files.length; i++) {
           console.log("pree id number")
             console.log(files[i]) 
