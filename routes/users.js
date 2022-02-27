@@ -1,4 +1,6 @@
 const { count } = require("console");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const express = require("express");
 const { json } = require("express/lib/response");
 const fs = require("fs");
@@ -137,6 +139,11 @@ router.post("/",(ctx,res)  =>{
     // fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
     //     if(err) console.log('error', err);})
     //     console.log("perfect")
+
+})
+
+
+router.post('/',(ctx,res)=>{
 
 })
 
