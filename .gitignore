@@ -6,3 +6,5 @@ Data/users/users.json
 Data/users/
 .env
 .gitignore
+.deleted
+routes.deleted
