@@ -10,6 +10,8 @@ const admin = { name : "Admin", id: "00", type: "admin", discription: "admin use
 const authenticated = { name : "Authenticated", id: "01", type: "user", discription: "default auth user" }
 const months = ["Jan", "Feb", "Far","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 const days = [ "Sunday", "Monday", "Tuedays", "Wednesday","Thursday", "Friday", "Saturday"]
+const emailRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const passwordRegexp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 const router = express.Router()
 
@@ -151,13 +153,19 @@ router.post('/register',(ctx,res)=>{
     let userNames = [];
     let emails = [];
     userEmail = ctx.body.email;
+    userPassword = ctx.boxy.password;
 
-    const emailRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const passwordRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+ 
         //check if password is valid
         if(emailRegexp.test(userEmail) == false){
             return res.status(400).json({
-                message:"400 error, bad request, user already taken"
+                message:"400 error, bad request, email already taken"
+            })
+        }
+
+        if(passwordRegexp.test(userPassword)== false){
+            return res.status(400).json({
+                message:"400 error, bad request, invalid password. "
             })
         }
 
