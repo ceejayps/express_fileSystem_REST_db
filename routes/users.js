@@ -1,6 +1,7 @@
 const { count } = require("console");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto")//.randomBytes(30).toString("hex")
 const express = require("express");
 const { json } = require("express/lib/response");
 const fs = require("fs");
@@ -143,7 +144,13 @@ router.post("/",(ctx,res)  =>{
 })
 
 
-router.post('/',(ctx,res)=>{
+router.post('/register',(ctx,res)=>{
+    
+    const prefix = "UUID-I";
+    const suffex = `-U_${ctx.body.name}`;
+    let cryptoString = crypto.randomBytes(30).toString("hex")
+    let UUID = `${prefix}${cryptoString}${suffex}`
+    console.log(UUID)
 
 })
 
