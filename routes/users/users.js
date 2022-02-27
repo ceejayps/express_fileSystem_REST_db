@@ -100,13 +100,14 @@ router.post('/login',(ctx,res)=>{
     password = ctx.body.password
 
     users = []
-    fs.readdir(`Data/users/`, (err, files) => {
+    fs.readdir(`Data/users/`, (err, files) => 
+    {
         for (let i = 0; i < files.length; i++) {
                users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8"))
                )}
-
-               res.json( users)
-              })
+        let currentUser = users.find(currentUser => currentUser.email = email)
+        res.json( currentUser)
+    })
 })
 
 module.exports = router
