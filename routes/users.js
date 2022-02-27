@@ -23,16 +23,21 @@ router.get("/",(req,res)=> {
             return;
         }
           user = await JSON.parse(jsonString);
-          for (var i = 0, l = Object.keys(user).length; i < l; i++){
+          for (var i = 0, l = Object.keys(user).length; i < l; i++)
+          {
            if (user[i].id === req.query.id) {
              res.json(user[i]);
            }else{
-               if( i == Object.keys(user).length -1){
-                   if(req.query.id != null){
+               if( i == Object.keys(user).length -1)
+               {
+                   if(req.query.id != null)
+                   {
                     res.json({message : "user not found"})
-                   } else{
-            res.json(user)}
-        }
+                   } else
+                   {
+                        res.json(user)
+                    }
+                }       
            }
          }
          
