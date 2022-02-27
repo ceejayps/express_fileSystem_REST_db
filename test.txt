@@ -5,7 +5,9 @@ firstname
 lastname
 email
 balance
-highscore
 password
-date_created
-date_updated
+highscore:0,
+balance:0,
+roles:,
+date_created:,
+date_updated:,
