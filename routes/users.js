@@ -142,7 +142,7 @@ router.post("/",(ctx,res)  =>{
 })
 
 
-router.post('/register',(ctx,res)=>{
+router.post('/register', async (ctx,res)=>{
     const prefix = "UUID-I";
     const suffex = `-U_${ctx.body.name}`;
     let cryptoString = crypto.randomBytes(30).toString("hex")
@@ -167,6 +167,7 @@ router.post('/register',(ctx,res)=>{
                 message:"400 error, bad request, invalid password."
             })
         }
+        const hashPassword = await bcrypt.hash(userPassword,10)
 
     fs.readdir(`Data/users`, (err, files) => {
         
@@ -184,6 +185,8 @@ router.post('/register',(ctx,res)=>{
             return res.status(400).json({message:"400 error, bad request, email already taken"})
         
         }
+
+
                res.json( existingUserNames)
               })
 
