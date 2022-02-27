@@ -95,4 +95,18 @@ router.post('/register', async (ctx,res)=>{
 
 })
 
+router.post('/login',(ctx,res)=>{
+    email = ctx.body.email;
+    password = ctx.body.password
+
+    users = []
+    fs.readdir(`Data/users/`, (err, files) => {
+        for (let i = 0; i < files.length; i++) {
+               users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8"))
+               )}
+
+               res.json( users)
+              })
+})
+
 module.exports = router
