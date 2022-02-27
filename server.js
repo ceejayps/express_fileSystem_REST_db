@@ -27,7 +27,7 @@ app.use(express.urlencoded({extended: true}))
 app.get("/", (req,res)=>{})
 
 
-const userRouter = require("./routes/users")
+const userRouter = require("./routes/users/users")
 const transactionsRouter = require("./routes/transactions")
 app.use("/users", userRouter);
 app.use("/transactions", transactionsRouter)
