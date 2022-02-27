@@ -10,7 +10,7 @@ let userSchema = new _userSchema({
     unique: [true, "smartAss we already have this email, use another!"],
     lowercase: true,
     trim: true,
-    required: [true, "smartAss we need a email to know who you are"],
+    required: [true, "smartAss we need an email to know who you are"],
     validate: {
       validator: function (v) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
