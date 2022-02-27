@@ -12,35 +12,9 @@ const passwordRegexp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 const router = express.Router()
 
+//get all users
 router.get("/",(req,res)=> {
 
-    let user;
-
-    var userfile =  fs.readFile("./Data/users/users.json", "utf8", async (err, jsonString)  =>  {
-        if (err) {
-            console.log("File read failed:", err);
-            return;
-        }
-          user = await JSON.parse(jsonString);
-          for (var i = 0, l = Object.keys(user).length; i < l; i++)
-          {
-           if (user[i].id === req.query.id) {
-             res.json(user[i]);
-           }else{
-               if( i == Object.keys(user).length -1)
-               {
-                   if(req.query.id != null)
-                   {
-                    res.json({message : "user not found"})
-                   } else
-                   {
-                        res.json(user)
-                    }
-                }       
-           }
-         }
-         
-    });
 
 })
 ;
