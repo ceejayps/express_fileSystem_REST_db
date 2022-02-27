@@ -154,12 +154,19 @@ router.post('/register',(ctx,res)=>{
 
     let userNames = [];
     let emails = [];
+    userEmail = ctx.body.email;
+
+    const emailRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        //check if password is valid
+        if(emailRegexp.test(userEmail) == false){
+            return res.status(400).json({
+                message:"400 error, bad request, user already taken"
+            })
+        }
 
 
     fs.readdir(`Data/users`, (err, files) => {
-        let Count = files.length;
-       // res.send(""+Count)
-        let i =0;
+        
 
         for (let i = 0; i < files.length; i++) {
           console.log("pree id number")
