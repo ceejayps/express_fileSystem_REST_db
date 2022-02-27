@@ -95,19 +95,35 @@ router.post('/register', async (ctx,res)=>{
 
 })
 
-router.post('/login',(ctx,res)=>{
-    email = ctx.body.email;
-    password = ctx.body.password
+router.post('/login',async(ctx,res)=>{
+    let email = ctx.body.email;
+    let password = ctx.body.password
 
     users = []
-    fs.readdir(`Data/users/`, (err, files) => 
+    fs.readdir(`Data/users/`, async (err, files) => 
     {
+        console.log("firebeore")
         for (let i = 0; i < files.length; i++) {
                users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8"))
                )}
-        let currentUser = users.find(currentUser => currentUser.email = email)
-        res.json( currentUser)
+               const user = users.find(user => user.email == email)
+               console.log("fireafter")
+                   if(user == null){ return res.status(400).send({message:"user does not exist"})}
+                   try {
+                    if(await bcrypt.compare(password, user.password)){
+                        res.send("in")
+                    }
+                    else{
+                        return res.status(400).send({message:"incorrect password"})
+                    }
+                   } catch (e) {
+                       return res.status(500).send({message:""})
+                   }
     })
+
+    console.log("fire")
+
+    
 })
 
 module.exports = router
