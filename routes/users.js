@@ -68,75 +68,6 @@ router.get("/:id",(req,res)=> {
 
 })
 
-router.post("/",(ctx,res)  =>{
-    let randomString = ''
-    const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-1234567890';
-    const charactersLength = characters.length;
-    const prefix = "UUID-I";
-    const suffex = ctx.body.name;
-    let Count;
-
-    let length = 90; 
-    for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
-    let userId = prefix + randomString + "Z-"+suffex;
-
-    fs.readFile("./Data/users/users.json", async function  (err, data) {
-        let json = await JSON.parse(data)
-        Count  = Object.keys(json).length;
-        let isTaken =0;
-        if(Count != 0){
-            console.log(Count)
-        for (let i = 0; i < Count; i++) {
-           console.log(isTaken)
-            console.log(ctx.body.name)
-            if(json[i].name == ctx.body.name){
-                console.log( "username is already taken taken value is " +isTaken)
-                res.status(400).json({'error':'User already exists.'});
-                console.log("this is the value of i " + i)
-                isTaken ++;
-
-                console.log(isTaken)
-               // res.sendStatus(400).send("username is taken")
-
-            }else{
-                console.log(isTaken)
-                if(isTaken == 0 && i == Count -1 ){
-                   
-                    json.push({
-                        id: userId, 
-                        name: ctx.body.name,
-                        "date Created":""+ days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
-                        role: authenticated
-                    })
-                    console.log("not first")
-                    fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
-                        if(err) console.log('error', err);})
-                        console.log("not first")
-                        res.status(201).json({'message':'User Created Successfully.'});
-                }
-            }
-            
-        }}else{
-            json.push({
-                id: userId,
-                name: ctx.body.name,
-                dateCreated:""+ days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(), 
-                role: authenticated,
-                
-            })
-            console.log("first")
-            fs.writeFile("./Data/users/users.json", JSON.stringify(json),function(err, result) {
-                if(err) console.log('error', err);})
-                console.log("first")
-                res.status(201).json({'message':'User Created Successfully.'});
-        }
-
-       
-      
-    })
-
-
-})
 
 
 router.post('/register', async (ctx,res)=>{
@@ -202,7 +133,7 @@ router.post('/register', async (ctx,res)=>{
     
 
 
-               res.json( hashPassword)
+               res.json({status:"done"})
               })
 
 })
