@@ -171,11 +171,6 @@ router.post('/register',(ctx,res)=>{
     fs.readdir(`Data/users`, (err, files) => {
         
         for (let i = 0; i < files.length; i++) {
-          console.log("pree id number")
-            console.log(files[i]) 
-            console.log("post id number")
-            console.log(i)
-        
             existingUserNames.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).username)
             emails.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).email)
             }
