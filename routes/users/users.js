@@ -78,6 +78,8 @@ router.post('/register', async (ctx,res)=>{
             password: hashPassword,
             highscore:0,
             balance:0,
+            confirm: false,
+            blocked: false,
             roles:authenticated,
             date_created:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
             date_updated:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
