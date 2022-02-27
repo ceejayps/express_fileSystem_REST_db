@@ -153,7 +153,7 @@ router.post('/register',(ctx,res)=>{
     let userNames = [];
     let emails = [];
     userEmail = ctx.body.email;
-    userPassword = ctx.boxy.password;
+    userPassword = ctx.body.password;
 
  
         //check if password is valid
@@ -165,7 +165,7 @@ router.post('/register',(ctx,res)=>{
 
         if(passwordRegexp.test(userPassword)== false){
             return res.status(400).json({
-                message:"400 error, bad request, invalid password. "
+                message:"400 error, bad request, invalid password."
             })
         }
 
