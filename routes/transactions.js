@@ -29,7 +29,7 @@ transactions.post("/",(ctx,res)=>{
         date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
     }
     console.log(amount) // data sent via the body for the request
-    fs.appendFile(`Data/transactions/${TUID}.json`, JSON.stringify(body), function (err) {
+    fs.appendFile(`Data/transactions/${TUID}.json`, JSON.stringify(body,null, 2), function (err) {
         if (err) throw err;
         console.log('Saved!');
       });
