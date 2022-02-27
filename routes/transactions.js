@@ -13,7 +13,7 @@ const transactions = express.Router()
 
 transactions.post("/",(ctx,res)=>{
     let { amount, type, name } = ctx.body;
-    let randomString = ''
+    let randomString = require("crypto").randomBytes(64).toString("hex")
     const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-1234567890';
     const charactersLength = characters.length;
     const prefix = "TUID-I";
