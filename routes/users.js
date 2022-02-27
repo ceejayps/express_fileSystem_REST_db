@@ -143,10 +143,10 @@ router.post("/",(ctx,res)  =>{
 
 
 router.post('/register',(ctx,res)=>{
-    
     const prefix = "UUID-I";
     const suffex = `-U_${ctx.body.name}`;
     let cryptoString = crypto.randomBytes(30).toString("hex")
+    // create user id
     let UUID = `${prefix}${cryptoString}${suffex}`
     console.log(UUID)
 
@@ -155,20 +155,18 @@ router.post('/register',(ctx,res)=>{
     userEmail = ctx.body.email;
     userPassword = ctx.body.password;
 
- 
-        //check if password is valid
+        //check if username is valid
         if(emailRegexp.test(userEmail) == false){
             return res.status(400).json({
                 message:"400 error, bad request, email already taken"
             })
         }
-
+        //check if password is valid
         if(passwordRegexp.test(userPassword)== false){
             return res.status(400).json({
                 message:"400 error, bad request, invalid password."
             })
         }
-
 
     fs.readdir(`Data/users`, (err, files) => {
         
@@ -191,8 +189,6 @@ router.post('/register',(ctx,res)=>{
             return res.status(400).json({message:"400 error, bad request, email already taken"})
         
         }
-
-
                res.json( existingUserNames)
               })
 
