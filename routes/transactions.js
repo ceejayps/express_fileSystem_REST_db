@@ -23,7 +23,7 @@ transactions.post("/",(ctx,res)=>{
     let TUID = prefix + randomString + "Z-"+suffex;
     let body ={
         id: TUID,
-        Amount:amount,
+        amount:amount,
         type : type,
         user: name,
         date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
@@ -95,9 +95,10 @@ let{name} = req.body
    let file_content = fs.readFileSync(`Data/transactions/`+id+`.json`);
 var content = JSON.parse(file_content);
 console.log(JSON.parse(file_content))
-var amount = content.Amount;
+var amount = content.Amount += 67;
+
   
-  
+fs.writeFileSync(`Data/transactions/`+id+`.json`, JSON.stringify(content,null,2));
    res.send(""+amount);
    })
 module.exports = transactions
