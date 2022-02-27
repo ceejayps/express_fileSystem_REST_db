@@ -13,13 +13,13 @@ const transactions = express.Router()
 
 transactions.post("/",(ctx,res)=>{
     let { amount, type, name } = ctx.body;
-    let randomString = require("crypto").randomBytes(64).toString("hex")
-    const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-1234567890';
-    const charactersLength = characters.length;
+    let randomString = require("crypto").randomBytes(30).toString("hex")
+    //const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-1234567890';
+   // const charactersLength = characters.length;
     const prefix = "TUID-I";
     const suffex = ctx.body.name;
-    let length = 30; 
-    for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
+    //let length = 30; 
+    //for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
     let TUID = prefix + randomString + "Z-"+suffex;
     let body ={
         id: TUID,
