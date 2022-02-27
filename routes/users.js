@@ -152,7 +152,7 @@ router.post('/register',(ctx,res)=>{
     let UUID = `${prefix}${cryptoString}${suffex}`
     console.log(UUID)
 
-    let data = [];
+    let usserNames = [];
 
 
     fs.readdir(`Data/users`, (err, files) => {
@@ -166,11 +166,13 @@ router.post('/register',(ctx,res)=>{
             console.log("post id number")
             console.log(i)
         
-               data.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).name
+            usserNames.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).username
                )}
-            if(data.includes(ctx.body.name)){
-            return res.status(400).json({message:"400 error, bad request, user already taken"})
-            }
+        if(data.includes(ctx.body.username)){
+        return res.status(400).json({message:"400 error, bad request, user already taken"})
+        }
+
+
                res.json( data)
               })
 
