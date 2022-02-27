@@ -40,83 +40,72 @@ transactions.post("/",(ctx,res)=>{
     res.json({TUID})
 })
 
-transactions.get("/", async (ctx,res)=>{
+
+transactions.get("/", async (req,res)=>{
      
-//     let data = [];
-//     //console.log(files)
+    let data = [];
+    
+    //console.log(files)
 
-//    fs.readdir(TransactionFolder, (err, files) => {
-//         let Count = files.length;
-//        // res.send(""+Count)
-//         let i =0;
+    fs.readdir(TransactionFolder, (err, files) => {
+        let Count = files.length;
+       // res.send(""+Count)
+        let i =0;
+
+        for (let i = 0; i < files.length; i++) {
+          console.log("pree id number")
+            console.log(files[i]) 
+            console.log("post id number")
+            console.log(i)
+        
+               data.push( JSON.parse(fs.readFileSync(`Data/transactions/${files[i]}`, "utf8"))
+        
+                   
+                    
+               )}
+               res.json( data)
+              
+              })
+        
+          
+       
+    
 
 
-// for (let i = 0; i < files.length; i++) {
-//     console.log(files[i]) 
-//     console.log(i)
 
-//        fs.readFile(`Data/transactions/${files[i]}`, "utf8", (err, jsonString)   =>   {
+
+//         files.forEach(file => {
+//             i++;
+//           console.log(i);
+//           //files.push(file)
+          
+//           fs.readFile(`Data/transactions/${file}`, "utf8", (err, jsonString)  =>  {
 //             if (err) {
 //                 console.log("File read failed:", err);
                
 //             }
 
-//            data = data.push(jsonString)
-//             console.log(jsonString)
+//             data.push(jsonString)
             
-           
+//             if(i == Count){
+                
+//                 console.log(jsonString)
 
+//                 //res.send(JSON.parse (data))
+//             }
     
              
-//         },
-
-        
-        
-//         );
-
-//         if(i == files.length-1){
-                
-                
-
-//             res.send( awaitndata)
-//         }
+//         });
           
-       
-    
-// }
-
-
-        // files.forEach(file => {
-        //     i++;
-        //   console.log(i);
-        //   //files.push(file)
-          
-        //   fs.readFile(`Data/transactions/${file}`, "utf8", (err, jsonString)  =>  {
-        //     if (err) {
-        //         console.log("File read failed:", err);
-               
-        //     }
-
-        //     data.push(jsonString)
-            
-        //     if(i == Count){
-                
-        //         console.log(jsonString)
-
-        //         //res.send(JSON.parse (data))
-        //     }
-    
-             
-        // });
-          
-        // });
-       // console.log(files)
+//         });
+//        console.log(files)
         
 
-     // });
+  
       
 
-
-})
+    // Promise.all([help]).then(function() {res.json( data);}).catch(function(err) {console.error(err);});
+ 
+ })
 
 module.exports = transactions
