@@ -9,5 +9,5 @@ Data/users/
 .deleted
 routes.deleted
 addto.env
-*.env
-addto .env
+
+
