@@ -188,9 +188,13 @@ router.post('/register', async (ctx,res)=>{
             user: ctx.body.username,
             email:ctx.body.email,
             password: hashPassword,
-            date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
-        }
-        console.log(amount) // data sent via the body for the request
+            highscore:0,
+            balance:0,
+            roles:authenticated,
+            date_created:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
+            date_updated:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
+            }
+        //console.log(amount) // data sent via the body for the request
         fs.appendFile(`Data/users/${UUID}.json`, JSON.stringify(body,null, 2), function (err) {
             if (err) throw err;
             console.log('Saved!');
