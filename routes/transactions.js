@@ -59,53 +59,10 @@ transactions.get("/", async (req,res)=>{
             console.log(i)
         
                data.push( JSON.parse(fs.readFileSync(`Data/transactions/${files[i]}`, "utf8"))
-        
-                   
-                    
                )}
+
                res.json( data)
-              
               })
-        
-          
-       
-    
-
-
-
-
-//         files.forEach(file => {
-//             i++;
-//           console.log(i);
-//           //files.push(file)
-          
-//           fs.readFile(`Data/transactions/${file}`, "utf8", (err, jsonString)  =>  {
-//             if (err) {
-//                 console.log("File read failed:", err);
-               
-//             }
-
-//             data.push(jsonString)
-            
-//             if(i == Count){
-                
-//                 console.log(jsonString)
-
-//                 //res.send(JSON.parse (data))
-//             }
-    
-             
-//         });
-          
-//         });
-//        console.log(files)
-        
-
-  
-      
-
-    // Promise.all([help]).then(function() {res.json( data);}).catch(function(err) {console.error(err);});
- 
  })
 
 module.exports = transactions
