@@ -182,6 +182,20 @@ router.post('/register', async (ctx,res)=>{
             return res.status(400).json({message:"400 error, bad request, email already taken"})
         
         }
+        let body ={
+            id: UUID,
+            name:ctx.name,
+            user: ctx.body.username,
+            email:ctx.body.email,
+            password: hashPassword,
+            date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
+        }
+        console.log(amount) // data sent via the body for the request
+        fs.appendFile(`Data/transactions/${TUID}.json`, JSON.stringify(body,null, 2), function (err) {
+            if (err) throw err;
+            console.log('Saved!');
+          });
+    
 
 
                res.json( hashPassword)
