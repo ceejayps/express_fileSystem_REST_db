@@ -31,7 +31,7 @@ router.post('/register', async (ctx,res)=>{
     const prefix = "UUID-I";
     const suffex = `-U_${ctx.body.name}`;
     let cryptoString = crypto.randomBytes(30).toString("hex")
-    let confirmToken = "confirm-I-"+crypto.randomBytes(12).toString("hex")+ctx.body.username;
+    let confirmationToken = "confirm-I-"+crypto.randomBytes(12).toString("hex")+ctx.body.username;
  
     // create user id
     let UUID = `${prefix}${cryptoString}${suffex}`
@@ -74,7 +74,7 @@ router.post('/register', async (ctx,res)=>{
         }
         let body ={
             id: UUID,
-            name:ctx.name,
+            name:ctx.body.name,
             user: ctx.body.username,
             email:ctx.body.email,
             password: hashPassword,
@@ -82,7 +82,7 @@ router.post('/register', async (ctx,res)=>{
             balance:0,
             confirm: false,
             blocked: false,
-            confirmToken,
+            confirmationToken,
             roles:authenticated,
             date_created:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
             date_updated:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
@@ -94,7 +94,7 @@ router.post('/register', async (ctx,res)=>{
              // email 
              let recipient = userEmail;
              const baseUrl = "";
-             const confirmUrl =baseUrl //+ query_string_params + confirmationToken;
+             const confirmUrl =baseUrl + query_string_params + confirmationToken;
              const sgMail = require('@sendgrid/mail')
              sgMail.setApiKey(process.env.SENDGRID_API_KEY)
              const msg = {
@@ -105,8 +105,8 @@ router.post('/register', async (ctx,res)=>{
                  to: { email: recipient },
                  dynamic_template_data: {
                      confirmUrl: confirmUrl,
-                     // username: (user.firstname).charAt(0).toUpperCase() +(user.firstname).slice(1),
-                    //  usernamee: (user.username).charAt(0).toUpperCase() +(user.username).slice(1)
+                     username: (ctx.body.name).charAt(0).toUpperCase() +(ctx.body.name).slice(1),
+                      usernamee: (ctx.body.username).charAt(0).toUpperCase() +(ctx.body.username).slice(1)
      
                  },
              }],
@@ -149,7 +149,7 @@ router.post('/confirm',async(ctx,res)=>{
         for (let i = 0; i < files.length; i++) {
                users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8"))
                )}
-               const user = users.find(user => user.confirmToken == token)
+               const user = users.find(user => user.confirmationToken == token)
                console.log("fireafter")
 
                let file_content = fs.readFileSync(`Data/users/`+user.id+`.json`);
