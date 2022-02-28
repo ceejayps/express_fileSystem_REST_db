@@ -1,0 +1,19 @@
+{
+  "id": "UUID-Ib5cc1528c240f72b4ae08c1b33cfc86f15c0067f77426d7f65c31712ed74-U_chester",
+  "user": "ceejayps",
+  "email": "ceejayps1308@gmail.com",
+  "password": "$2b$10$dkSD0ioR6PBHS6PeqeiIYemyqU7ZtkL6bNRxC5/mGP.LAJIb4usk.",
+  "highscore": 0,
+  "balance": 0,
+  "confirm": true,
+  "blocked": false,
+  "confirmationToken": "confirm-I-79c27dab3f250481ade1cd65ceejayps",
+  "roles": {
+    "name": "Authenticated",
+    "id": "01",
+    "type": "user",
+    "discription": "default auth user"
+  },
+  "date_created": "Monday Feb 28 2022",
+  "date_updated": "Monday Feb 28 2022"
+}
