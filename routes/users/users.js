@@ -88,9 +88,6 @@ router.post('/register', async (ctx,res)=>{
             date_updated:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
             }
 
-
-
-
              // email 
              let recipient = userEmail;
              const baseUrl = "";
