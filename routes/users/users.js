@@ -31,6 +31,8 @@ router.post('/register', async (ctx,res)=>{
     const prefix = "UUID-I";
     const suffex = `-U_${ctx.body.name}`;
     let cryptoString = crypto.randomBytes(30).toString("hex")
+    let confirmToken = "confirm-I-"+crypto.randomBytes(12).toString("hex")+ctx.body.username;
+ 
     // create user id
     let UUID = `${prefix}${cryptoString}${suffex}`
     console.log(UUID)
@@ -80,10 +82,47 @@ router.post('/register', async (ctx,res)=>{
             balance:0,
             confirm: false,
             blocked: false,
+            confirmToken,
             roles:authenticated,
             date_created:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
             date_updated:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
             }
+
+
+
+
+             // email 
+             let recipient = userEmail;
+             const baseUrl = "";
+             const confirmUrl =baseUrl //+ query_string_params + confirmationToken;
+             const sgMail = require('@sendgrid/mail')
+             sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+             const msg = {
+               to: recipient, // Change to your recipient
+               from: process.env.EMAIL, // Change to your verified sender
+               template_id: process.env.CONFIRM_ACCOUNT_TEMPLATE,
+             personalizations: [{
+                 to: { email: recipient },
+                 dynamic_template_data: {
+                     confirmUrl: confirmUrl,
+                     // username: (user.firstname).charAt(0).toUpperCase() +(user.firstname).slice(1),
+                    //  usernamee: (user.username).charAt(0).toUpperCase() +(user.username).slice(1)
+     
+                 },
+             }],
+             
+             }
+             sgMail
+                  .send(msg)
+                  .then(() => {
+                    console.log('Email sent')
+                    res.json({status:"done"})
+                  })
+                  .catch((error) => {
+                      //res.status(500).send()
+                    console.error(error)
+                  })
+     
         //console.log(amount) // data sent via the body for the request
         fs.appendFile(`Data/users/${UUID}.json`, JSON.stringify(body,null, 2), function (err) {
             if (err) throw err;
@@ -91,44 +130,42 @@ router.post('/register', async (ctx,res)=>{
           });
 
 
-            // email 
-            let recipient = userEmail;
-            const baseUrl = "";
-            const confirmUrl =baseUrl //+ query_string_params + confirmationToken;
-            const sgMail = require('@sendgrid/mail')
-            sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-            const msg = {
-              to: recipient, // Change to your recipient
-              from: process.env.EMAIL, // Change to your verified sender
-              template_id: process.env.CONFIRM_ACCOUNT_TEMPLATE,
-            personalizations: [{
-                to: { email: recipient },
-                dynamic_template_data: {
-                    //confirmUrl: confirmUrl,
-                    // username: (user.firstname).charAt(0).toUpperCase() +(user.firstname).slice(1),
-                    // usernamee: (user.username).charAt(0).toUpperCase() +(user.username).slice(1)
-    
-                },
-            }],
-            
-            }
-            sgMail
-                 .send(msg)
-                 .then(() => {
-                   console.log('Email sent')
-                   res.json({status:"done"})
-                 })
-                 .catch((error) => {
-                     //res.status(500).send()
-                   console.error(error)
-                 })
-    
+           
 
 
                
               })
 
 })
+
+router.post('/confirm',async(ctx,res)=>{
+    let token = ctx.query.token;
+   
+
+    users = []
+    fs.readdir(`Data/users/`, async (err, files) => 
+    {
+        console.log("firebeore")
+        for (let i = 0; i < files.length; i++) {
+               users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8"))
+               )}
+               const user = users.find(user => user.confirmToken == token)
+               console.log("fireafter")
+
+               let file_content = fs.readFileSync(`Data/users/`+user.id+`.json`);
+               var content = JSON.parse(file_content);
+               content.confirm = true;
+                   if(user == null){ return res.status(400).send({message:"user does not exist"})}
+                   fs.writeFileSync(`Data/users/`+user.id+`.json`, JSON.stringify(content,null,2));
+                   return res.status(200).json({message:"Confirmed"})
+                   
+    })
+
+    console.log("fire")
+
+    
+})
+
 
 router.post('/login',async(ctx,res)=>{
     let email = ctx.body.email;
