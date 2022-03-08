@@ -110,10 +110,10 @@ router.post('/confirm',async(ctx,res)=>{
         let file_content = fs.readFileSync(`Data/users/`+user.id+`.json`);
         var content = JSON.parse(file_content);
         content.confirm = true;
-            if(user == null){ return res.status(400).send({message:"user does not exist"})}
-            fs.writeFileSync(`Data/users/`+user.id+`.json`, JSON.stringify(content,null,2));
-            return res.status(200).json({message:"Confirmed"})
-    console.log("fire")
+        if(user == null){ return res.status(400).send({message:"user does not exist"})}
+        fs.writeFileSync(`Data/users/`+user.id+`.json`, JSON.stringify(content,null,2));
+        return res.status(200).json({message:"Confirmed"})
+        console.log("fire")
 
     
 })
@@ -122,8 +122,7 @@ router.post('/confirm',async(ctx,res)=>{
 router.post('/login',async(ctx,res)=>{
     let email = ctx.body.email;
     let password = ctx.body.password
-
-    users = []
+    const users = []
     fs.readdir(`Data/users/`, async (err, files) => 
     {
         console.log("firebeore")
@@ -139,10 +138,7 @@ router.post('/login',async(ctx,res)=>{
                         res.json([JWT,user])
                    } catch (e) {return res.status(500).send({message:""})}
     })
-
     console.log("fire")
-
-    
 })
 
 module.exports = router
