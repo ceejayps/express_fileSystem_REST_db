@@ -40,15 +40,12 @@ router.post('/register', async (ctx,res)=>{
     let emails = [];
     let  userEmail = ctx.body.email;
     let  userPassword = ctx.body.password;
-
         //check if username is valid
         if(emailRegexp.test(userEmail) == false)return res.status(400).json({message:"400 error, bad request, email already taken"})
         //check if password is valid
         if(passwordRegexp.test(userPassword)== false)return res.status(400).json({message:"400 error, bad request, invalid password."})
         const hashPassword = await bcrypt.hash(userPassword,10)
-
         const users= fs.readdir(`Data/users`)
-            
         users.forEach(element => {
             existingUserNames.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).username)
             emails.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).email)
@@ -71,7 +68,6 @@ router.post('/register', async (ctx,res)=>{
             date_created:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
             date_updated:days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
             }
-
              // email 
              let recipient = userEmail;
              const baseUrl = "";
@@ -88,11 +84,7 @@ router.post('/register', async (ctx,res)=>{
                      confirmUrl: confirmUrl,
                      username: (ctx.body.name).charAt(0).toUpperCase() +(ctx.body.name).slice(1),
                       usernamee: (ctx.body.username).charAt(0).toUpperCase() +(ctx.body.username).slice(1)
-     
-                 },
-             }],
-             
-             }
+     },}],}
              sgMail
                   .send(msg)
                   .then(() => {
@@ -101,10 +93,7 @@ router.post('/register', async (ctx,res)=>{
                   })
                   .catch((error) => {
                       return res.status(500).send()
-                    console.error(error)
-
                   })
-     
         fs.appendFile(`Data/users/${UUID}.json`, JSON.stringify(body,null, 2), function (err) {
             if (err) throw err;
             console.log('Saved!');
