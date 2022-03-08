@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const crypto = require("crypto")//.randomBytes(30).toString("hex")
+const crypto = require("crypto")
 const express = require("express");
 const fs = require("fs");
 const admin = { name : "Admin", id: "00", type: "admin", discription: "admin user" }
