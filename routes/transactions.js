@@ -64,10 +64,9 @@ transactions.get("/", async (req,res)=>{
 
  transactions.post("/:id",async (req,res)=>{
     const id = req.params.id;
-    const file_content = fs.readFileSync(`Data/transactions/${id}.json`);
-    const content = JSON.parse(file_content);
-    const amount = content.Amount += 67;
-  fs.writeFileSync(`Data/transactions/${id}.json`, JSON.stringify(content,null,2));
+    const file_content = JSON.parse(fs.readFileSync(`Data/transactions/${id}.json`));
+    const amount = file_content.Amount += 67;
+  fs.writeFileSync(`Data/transactions/${id}.json`, JSON.stringify(file_content,null,2));
    res.send(""+amount);
    })
 module.exports = transactions
