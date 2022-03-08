@@ -34,7 +34,7 @@ transactions.post("/", async (ctx,res)=>{
 transactions.get("/", async (req,res)=>{
     let data = [];
     try {
-      const Transactions=  fs.readdirSync(TransactionFolder)
+      const Transactions = fs.readdirSync(TransactionFolder)
       Transactions.forEach(file => {
         data.push( JSON.parse(fs.readFileSync(`Data/transactions/${file}`, "utf8")))
       }); 
@@ -57,7 +57,6 @@ transactions.get("/", async (req,res)=>{
 
  transactions.post("/test/user",(req,res)=>{
   let{name} = req.body
-
   var token = jwt.sign({id: name}, process.env.ACCESS_TOKEN_SECRECT);
   return res.json({token:token});
  })
