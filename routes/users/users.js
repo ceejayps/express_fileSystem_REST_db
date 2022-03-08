@@ -15,7 +15,7 @@ const router = express.Router()
 //get all users
 router.get("/",(req,res)=> {
 })
-;
+
 //get user by id
 router.get("/:id",(req,res)=> {
 })
