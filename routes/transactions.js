@@ -37,10 +37,6 @@ transactions.get("/", async (req,res)=>{
 Transactions.forEach(file => {
   data.push( JSON.parse(fs.readFileSync(`Data/transactions/${file}`, "utf8")))
   });
-        // for (let i = 0; i < files.length; i++) {
-        
-        //   
-        // )}
     res.json( data)
  })
 
