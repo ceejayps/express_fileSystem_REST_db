@@ -2,7 +2,6 @@
 const express = require("express");
 const { json } = require("express/lib/response");
 const fs = require("fs");
-var bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const months = ["Jan", "Feb", "Far","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 const days = [ "Sunday", "Monday", "Tuedays", "Wednesday","Thursday", "Friday", "Saturday"]
