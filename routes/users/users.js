@@ -58,10 +58,7 @@ router.post('/register', async (ctx,res)=>{
         if(existingUserNames.includes(ctx.body.username)) return res.status(400).json({message:"400 error, bad request, user already taken"})
         
         
-        if(emails.includes(ctx.body.email)){
-            return res.status(400).json({message:"400 error, bad request, email already taken"})
-        
-        }
+        if(emails.includes(ctx.body.email))return res.status(400).json({message:"400 error, bad request, email already taken"})
         let body ={
             id: UUID,
             name:ctx.body.name,
