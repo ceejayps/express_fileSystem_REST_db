@@ -61,13 +61,13 @@ transactions.get("/", async (req,res)=>{
     
         return res.send(userId);
   //  });
-}
-return res.send(500);
+  }
+  return res.send(500);
  })
 
 
  transactions.post("/test/user",(req,res)=>{
-let{name} = req.body
+  let{name} = req.body
 
   var token = jwt.sign({id: name}, process.env.ACCESS_TOKEN_SECRECT);
   return res.json({token:token});
@@ -75,11 +75,11 @@ let{name} = req.body
 
 
  transactions.post("/:id",(req,res)=>{
-   let id = req.params.id;
-   let file_content = fs.readFileSync(`Data/transactions/`+id+`.json`);
-  var content = JSON.parse(file_content);
-  console.log(JSON.parse(file_content))
-  var amount = content.Amount += 67;
+    let id = req.params.id;
+    let file_content = fs.readFileSync(`Data/transactions/`+id+`.json`);
+    var content = JSON.parse(file_content);
+    console.log(JSON.parse(file_content))
+    var amount = content.Amount += 67;
 
   
   fs.writeFileSync(`Data/transactions/`+id+`.json`, JSON.stringify(content,null,2));
