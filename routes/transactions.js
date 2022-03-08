@@ -39,13 +39,13 @@ transactions.get("/", async (req,res)=>{
 
         for (let i = 0; i < files.length; i++) {
           console.log("pree id number")
-            console.log(files[i]) 
-            console.log("post id number")
-            console.log(i)
-        
-               data.push( JSON.parse(fs.readFileSync(`Data/transactions/${files[i]}`, "utf8"))
-               )}
-              })
+          console.log(files[i]) 
+          console.log("post id number")
+          console.log(i)
+          data.push( JSON.parse(fs.readFileSync(`Data/transactions/${files[i]}`, "utf8"))
+        )}
+    })
+    res.json( data)
  })
 
  transactions.get("/test/user",(req,res)=>{
