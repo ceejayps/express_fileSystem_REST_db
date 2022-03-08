@@ -33,11 +33,11 @@ transactions.post("/", async (ctx,res)=>{
 
 transactions.get("/", async (req,res)=>{
     let data = [];
-   const Transactions=  fs.readdirSync(TransactionFolder)
-Transactions.forEach(file => {
+    const Transactions=  fs.readdirSync(TransactionFolder)
+    Transactions.forEach(file => {
   data.push( JSON.parse(fs.readFileSync(`Data/transactions/${file}`, "utf8")))
-  });
-    res.json( data)
+    }); 
+    return res.json( data)
  })
 
  transactions.get("/test/user",(req,res)=>{
