@@ -44,15 +44,15 @@ transactions.get("/", async (req,res)=>{
  })
 
  transactions.get("/test/user",(req,res)=>{
-  if (req.headers && req.headers.authorization) {
+  if (!req.headers && !req.headers.authorization)return res.send(userId);
     var authorization = req.headers.authorization.split(' ')[1],
         decoded;
     try {
         decoded = jwt.verify(authorization, process.env.ACCESS_TOKEN_SECRECT);
     } catch (e) {res.send(authorization)}
     const userId = decoded.id;
-    return res.send(userId);
-  }
+   
+  
   return res.send(500);
  })
 
