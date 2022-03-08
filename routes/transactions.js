@@ -51,9 +51,7 @@ transactions.get("/", async (req,res)=>{
         decoded = jwt.verify(authorization, process.env.ACCESS_TOKEN_SECRECT);
     } catch (e) {res.send(authorization)}
     const userId = decoded.id;
-   
-  
-  return res.send(500);
+  return res.send(decoded);
  })
 
 
