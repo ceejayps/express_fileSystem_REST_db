@@ -30,11 +30,10 @@ router.get("/:id",(req,res)=> {
 router.post('/register', async (ctx,res)=>{
     const prefix = "UUID-I";
     const suffex = `-U_${ctx.body.name}`;
-    let cryptoString = crypto.randomBytes(30).toString("hex")
     let confirmationToken = "confirm-I-"+crypto.randomBytes(12).toString("hex")+ctx.body.username;
  
     // create user id
-    let UUID = `${prefix}${cryptoString}${suffex}`
+    let UUID = `${prefix}${crypto.randomBytes(30).toString("hex")}${suffex}`
     console.log(UUID)
 
     let existingUserNames = [];
