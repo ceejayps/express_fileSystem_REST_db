@@ -13,10 +13,9 @@ const transactions = express.Router()
 
 transactions.post("/", async (ctx,res)=>{
     const { amount, type, name } = ctx.body;
-    const randomString = require("crypto").randomBytes(30).toString("hex")
-    const prefix = "TUID-I";
-    const suffex = ctx.body.name;
-    let TUID = `${prefix}${randomString}Z-${suffex}`;
+    const tuidPrefix = "TUID-I";
+    const tuidSuffex = ctx.body.name;
+    let TUID = `${tuidPrefix}${require("crypto").randomBytes(30).toString("hex")}Z-${tuidSuffex}`;
     let body ={
         id: TUID,
         amount:amount,
