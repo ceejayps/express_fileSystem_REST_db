@@ -91,8 +91,6 @@ router.post('/register', async (ctx,res)=>{
             if (err) throw err;
             console.log('Saved!');
           });
-          
-
 })
 
 router.post('/confirm',async(ctx,res)=>{
