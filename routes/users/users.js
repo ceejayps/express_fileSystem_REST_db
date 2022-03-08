@@ -103,27 +103,22 @@ router.post('/register', async (ctx,res)=>{
 
 router.post('/confirm',async(ctx,res)=>{
     let token = ctx.query.token;
-   
-
-    users = []
-    fs.readdir(`Data/users/`, async (err, files) => 
-    {
+   const userItems = fs.readdirSync(`Data/users/`) 
+   const users= []
+    
         console.log("firebeore")
-        for (let i = 0; i < files.length; i++) {
-               users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8"))
-               )}
-               const user = users.find(user => user.confirmationToken == token)
-               console.log("fireafter")
+        userItems.forEach(user => {
+            users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")))
+        });
+        const user = users.find(user => user.confirmationToken == token)
+        console.log("fireafter")
 
-               let file_content = fs.readFileSync(`Data/users/`+user.id+`.json`);
-               var content = JSON.parse(file_content);
-               content.confirm = true;
-                   if(user == null){ return res.status(400).send({message:"user does not exist"})}
-                   fs.writeFileSync(`Data/users/`+user.id+`.json`, JSON.stringify(content,null,2));
-                   return res.status(200).json({message:"Confirmed"})
-                   
-    })
-
+        let file_content = fs.readFileSync(`Data/users/`+user.id+`.json`);
+        var content = JSON.parse(file_content);
+        content.confirm = true;
+            if(user == null){ return res.status(400).send({message:"user does not exist"})}
+            fs.writeFileSync(`Data/users/`+user.id+`.json`, JSON.stringify(content,null,2));
+            return res.status(200).json({message:"Confirmed"})
     console.log("fire")
 
     
