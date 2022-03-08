@@ -124,19 +124,18 @@ router.post('/login',async(ctx,res)=>{
     let password = ctx.body.password
     const users = []
     files = fs.readdirSync(`Data/users/`) 
-        console.log("firebeore")
-        for (let i = 0; i < files.length; i++) {
-               users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8"))
-               )}
-               const user = users.find(user => user.email == email)
-               console.log("fireafter")
-                   if(user == null){ return res.status(400).send({message:"user does not exist"})}
-                   try {
-                    if(! await bcrypt.compare(password, user.password))return res.status(400).send({message:"incorrect password"})
-                        let JWT = jwt.sign({id: user.id, name: user.name, email:user.email, role:user.role}, process.env.ACCESS_TOKEN_SECRECT);
-                        res.json([JWT,user])
-                   } catch (e) {return res.status(500).send({message:""})}
+    files.forEach(element => {
+        users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")))
+    });
+    const user = users.find(user => user.email == email)
     
+                if(user == null) return res.status(400).send({message:"user does not exist"})
+                try {
+                if(! await bcrypt.compare(password, user.password))return res.status(400).send({message:"incorrect password"})
+                    let JWT = jwt.sign({id: user.id, name: user.name, email:user.email, role:user.role}, process.env.ACCESS_TOKEN_SECRECT);
+                    res.json([JWT,user])
+                } catch (e) {return res.status(500).send({message:""})}
+
     console.log("fire")
 })
 
