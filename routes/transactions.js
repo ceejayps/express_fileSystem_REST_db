@@ -74,7 +74,7 @@ transactions.get("/", async (req,res)=>{
  })
 
 
- transactions.post("/:id",(req,res)=>{
+ transactions.post("/:id",async (req,res)=>{
     let id = req.params.id;
     let file_content = fs.readFileSync(`Data/transactions/`+id+`.json`);
     var content = JSON.parse(file_content);
