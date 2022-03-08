@@ -48,13 +48,13 @@ router.post('/register', async (ctx,res)=>{
         if(passwordRegexp.test(userPassword)== false)return res.status(400).json({message:"400 error, bad request, invalid password."})
         const hashPassword = await bcrypt.hash(userPassword,10)
 
-   const users= fs.readdir(`Data/users`)
-        
-   users.forEach(element => {
-    existingUserNames.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).username)
-    emails.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).email)
-   });
-       
+        const users= fs.readdir(`Data/users`)
+            
+        users.forEach(element => {
+            existingUserNames.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).username)
+            emails.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).email)
+        });
+            
            
 
                
