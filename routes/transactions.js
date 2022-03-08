@@ -36,7 +36,6 @@ transactions.get("/", async (req,res)=>{
     fs.readdirSync(TransactionFolder, (err, files) => {
         let Count = files.length;
         let i =0;
-
         for (let i = 0; i < files.length; i++) {
           console.log("pree id number")
           console.log(files[i]) 
@@ -78,9 +77,9 @@ let{name} = req.body
  transactions.post("/:id",(req,res)=>{
    let id = req.params.id;
    let file_content = fs.readFileSync(`Data/transactions/`+id+`.json`);
-var content = JSON.parse(file_content);
-console.log(JSON.parse(file_content))
-var amount = content.Amount += 67;
+  var content = JSON.parse(file_content);
+  console.log(JSON.parse(file_content))
+  var amount = content.Amount += 67;
 
   
 fs.writeFileSync(`Data/transactions/`+id+`.json`, JSON.stringify(content,null,2));
