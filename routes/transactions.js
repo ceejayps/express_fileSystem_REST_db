@@ -15,7 +15,7 @@ transactions.post("/", async (ctx,res)=>{
     const { amount, type, name } = ctx.body;
     const tuidPrefix = "TUID-I";
     const tuidSuffex = ctx.body.name;
-    let TUID = `${tuidPrefix}${require("crypto").randomBytes(30).toString("hex")}Z-${tuidSuffex}`;
+    const TUID = `${tuidPrefix}${require("crypto").randomBytes(30).toString("hex")}Z-${tuidSuffex}`;
     let body ={
         id: TUID,
         amount:amount,
