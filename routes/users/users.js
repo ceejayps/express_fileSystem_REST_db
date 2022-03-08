@@ -134,14 +134,9 @@ router.post('/login',async(ctx,res)=>{
                console.log("fireafter")
                    if(user == null){ return res.status(400).send({message:"user does not exist"})}
                    try {
-                    if(await bcrypt.compare(password, user.password)){
-                         let JWT = jwt.sign({id: user.id, name: user.name, email:user.email, role:user.role}, process.env.ACCESS_TOKEN_SECRECT);
-
+                    if(! await bcrypt.compare(password, user.password))return res.status(400).send({message:"incorrect password"})
+                        let JWT = jwt.sign({id: user.id, name: user.name, email:user.email, role:user.role}, process.env.ACCESS_TOKEN_SECRECT);
                         res.json([JWT,user])
-                    }
-                    else{
-                        return res.status(400).send({message:"incorrect password"})
-                    }
                    } catch (e) {return res.status(500).send({message:""})}
     })
 
