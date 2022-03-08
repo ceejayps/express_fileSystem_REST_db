@@ -23,19 +23,15 @@ transactions.post("/", async (ctx,res)=>{
         user: name,
         date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
     }
-
     fs.appendFileSync(`Data/transactions/${TUID}.json`, JSON.stringify(body,null, 2), function (err) {
         if (err) throw err;
         console.log('Saved!');
       });
-
     return res.json({TUID})
 })
 
 
 transactions.get("/", async (req,res)=>{
-  
-     
     let data = [];
     
     //console.log(files)
