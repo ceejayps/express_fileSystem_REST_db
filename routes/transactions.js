@@ -82,7 +82,7 @@ let{name} = req.body
   var amount = content.Amount += 67;
 
   
-fs.writeFileSync(`Data/transactions/`+id+`.json`, JSON.stringify(content,null,2));
+  fs.writeFileSync(`Data/transactions/`+id+`.json`, JSON.stringify(content,null,2));
    res.send(""+amount);
    })
 module.exports = transactions
