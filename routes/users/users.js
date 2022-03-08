@@ -50,10 +50,12 @@ router.post('/register', async (ctx,res)=>{
 
    const users= fs.readdir(`Data/users`)
         
-        for (let i = 0; i < files.length; i++) {
-            existingUserNames.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).username)
-            emails.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).email)
-            }
+   users.forEach(element => {
+    existingUserNames.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).username)
+    emails.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).email)
+   });
+       
+           
 
                
         if(existingUserNames.includes(ctx.body.username)){
