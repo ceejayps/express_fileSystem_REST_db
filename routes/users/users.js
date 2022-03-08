@@ -123,9 +123,9 @@ router.post('/login',async(ctx,res)=>{
     let email = ctx.body.email;
     let password = ctx.body.password
     const users = []
-    files = fs.readdirSync(`Data/users/`) 
+    const files = fs.readdirSync(`Data/users/`) 
     files.forEach(element => {
-        users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")))
+        users.push( JSON.parse(fs.readFileSync(`Data/users/${element}`, "utf8")))
     });
     const user = users.find(user => user.email == email)
     
