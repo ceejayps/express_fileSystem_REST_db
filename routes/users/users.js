@@ -53,12 +53,10 @@ router.post('/register', async (ctx,res)=>{
         users.forEach(element => {
             existingUserNames.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).username)
             emails.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")).email)
-        });
-             
+        });  
         if(existingUserNames.includes(ctx.body.username)) return res.status(400).json({message:"400 error, bad request, user already taken"})
-        
-        
         if(emails.includes(ctx.body.email))return res.status(400).json({message:"400 error, bad request, email already taken"})
+        
         let body ={
             id: UUID,
             name:ctx.body.name,
