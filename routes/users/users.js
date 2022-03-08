@@ -38,8 +38,8 @@ router.post('/register', async (ctx,res)=>{
 
     let existingUserNames = [];
     let emails = [];
-   let  userEmail = ctx.body.email;
-  let  userPassword = ctx.body.password;
+    let  userEmail = ctx.body.email;
+    let  userPassword = ctx.body.password;
 
         //check if username is valid
         if(emailRegexp.test(userEmail) == false)return res.status(400).json({message:"400 error, bad request, email already taken"})
