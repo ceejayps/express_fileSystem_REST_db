@@ -11,16 +11,12 @@ const TransactionFolder = './Data/transactions/';
 
 const transactions = express.Router()
 
-transactions.post("/",(ctx,res)=>{
-    let { amount, type, name } = ctx.body;
-    let randomString = require("crypto").randomBytes(30).toString("hex")
-    //const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-1234567890';
-   // const charactersLength = characters.length;
+transactions.post("/", async (ctx,res)=>{
+    const { amount, type, name } = ctx.body;
+    const randomString = require("crypto").randomBytes(30).toString("hex")
     const prefix = "TUID-I";
     const suffex = ctx.body.name;
-    //let length = 30; 
-    //for ( var i = 0; i < length; i++ ) {randomString += characters.charAt(Math.floor(Math.random() * charactersLength));}
-    let TUID = prefix + randomString + "Z-"+suffex;
+    let TUID = `${prefix}${randomString}Z-${suffex}`;
     let body ={
         id: TUID,
         amount:amount,
@@ -28,8 +24,8 @@ transactions.post("/",(ctx,res)=>{
         user: name,
         date: days[new Date().getDay()] +" " + months[new Date().getMonth()] + " " + new Date().getDate() + " "+ new Date().getFullYear(),
     }
-    console.log(amount) // data sent via the body for the request
-    fs.appendFile(`Data/transactions/${TUID}.json`, JSON.stringify(body,null, 2), function (err) {
+
+    fs.appendFileSync(`Data/transactions/${TUID}.json`, JSON.stringify(body,null, 2), function (err) {
         if (err) throw err;
         console.log('Saved!');
       });
