@@ -33,12 +33,8 @@ transactions.post("/", async (ctx,res)=>{
 
 transactions.get("/", async (req,res)=>{
     let data = [];
-    
-    //console.log(files)
-
-    fs.readdir(TransactionFolder, (err, files) => {
+    fs.readdirSync(TransactionFolder, (err, files) => {
         let Count = files.length;
-       // res.send(""+Count)
         let i =0;
 
         for (let i = 0; i < files.length; i++) {
@@ -49,8 +45,6 @@ transactions.get("/", async (req,res)=>{
         
                data.push( JSON.parse(fs.readFileSync(`Data/transactions/${files[i]}`, "utf8"))
                )}
-
-               res.json( data)
               })
  })
 
