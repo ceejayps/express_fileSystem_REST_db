@@ -33,17 +33,14 @@ transactions.post("/", async (ctx,res)=>{
 
 transactions.get("/", async (req,res)=>{
     let data = [];
-    fs.readdirSync(TransactionFolder, (err, files) => {
-        let Count = files.length;
-        let i =0;
-        for (let i = 0; i < files.length; i++) {
-          console.log("pree id number")
-          console.log(files[i]) 
-          console.log("post id number")
-          console.log(i)
-          data.push( JSON.parse(fs.readFileSync(`Data/transactions/${files[i]}`, "utf8"))
-        )}
-    })
+   const Transactions=  fs.readdirSync(TransactionFolder)
+Transactions.forEach(file => {
+  data.push( JSON.parse(fs.readFileSync(`Data/transactions/${file}`, "utf8")))
+  });
+        // for (let i = 0; i < files.length; i++) {
+        
+        //   
+        // )}
     res.json( data)
  })
 
