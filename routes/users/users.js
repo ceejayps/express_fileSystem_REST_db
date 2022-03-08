@@ -142,9 +142,7 @@ router.post('/login',async(ctx,res)=>{
                     else{
                         return res.status(400).send({message:"incorrect password"})
                     }
-                   } catch (e) {
-                       return res.status(500).send({message:""})
-                   }
+                   } catch (e) {return res.status(500).send({message:""})}
     })
 
     console.log("fire")
