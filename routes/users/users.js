@@ -128,13 +128,12 @@ router.post('/login',async(ctx,res)=>{
         users.push( JSON.parse(fs.readFileSync(`Data/users/${element}`, "utf8")))
     });
     const user = users.find(user => user.email == email)
-    
-                if(user == null) return res.status(400).send({message:"user does not exist"})
-                try {
-                if(! await bcrypt.compare(password, user.password))return res.status(400).send({message:"incorrect password"})
-                    let JWT = jwt.sign({id: user.id, name: user.name, email:user.email, role:user.role}, process.env.ACCESS_TOKEN_SECRECT);
-                    res.json([JWT,user])
-                } catch (e) {return res.status(500).send({message:""})}
+    if(user == null) return res.status(400).send({message:"user does not exist"})
+    try {
+    if(! await bcrypt.compare(password, user.password))return res.status(400).send({message:"incorrect password"})
+        let JWT = jwt.sign({id: user.id, name: user.name, email:user.email, role:user.role}, process.env.ACCESS_TOKEN_SECRECT);
+        res.json([JWT,user])
+    } catch (e) {return res.status(500).send({message:""})}
 
     console.log("fire")
 })
