@@ -30,7 +30,7 @@ transactions.post("/", async (ctx,res)=>{
         console.log('Saved!');
       });
 
-    res.json({TUID})
+    return res.json({TUID})
 })
 
 
