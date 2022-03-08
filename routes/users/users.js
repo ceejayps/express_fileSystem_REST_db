@@ -43,11 +43,8 @@ router.post('/register', async (ctx,res)=>{
   let  userPassword = ctx.body.password;
 
         //check if username is valid
-        if(emailRegexp.test(userEmail) == false){
-            return res.status(400).json({
-                message:"400 error, bad request, email already taken"
-            })
-        }
+        if(emailRegexp.test(userEmail) == false)return res.status(400).json({message:"400 error, bad request, email already taken"})
+        
         //check if password is valid
         if(passwordRegexp.test(userPassword)== false){
             return res.status(400).json({
