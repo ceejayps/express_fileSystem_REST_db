@@ -99,7 +99,6 @@ router.post('/confirm',async(ctx,res)=>{
     let token = ctx.query.token;
    const userItems = fs.readdirSync(`Data/users/`) 
    const users= []
-    
         console.log("firebeore")
         userItems.forEach(user => {
             users.push( JSON.parse(fs.readFileSync(`Data/users/${files[i]}`, "utf8")))
@@ -113,9 +112,7 @@ router.post('/confirm',async(ctx,res)=>{
         if(user == null){ return res.status(400).send({message:"user does not exist"})}
         fs.writeFileSync(`Data/users/`+user.id+`.json`, JSON.stringify(content,null,2));
         return res.status(200).json({message:"Confirmed"})
-        console.log("fire")
-
-    
+        console.log("fire") 
 })
 
 
@@ -134,8 +131,6 @@ router.post('/login',async(ctx,res)=>{
         let JWT = jwt.sign({id: user.id, name: user.name, email:user.email, role:user.role}, process.env.ACCESS_TOKEN_SECRECT);
         res.json([JWT,user])
     } catch (e) {return res.status(500).send({message:""})}
-
-    console.log("fire")
 })
 
 module.exports = router
