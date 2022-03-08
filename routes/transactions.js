@@ -49,14 +49,9 @@ transactions.get("/", async (req,res)=>{
         decoded;
     try {
         decoded = jwt.verify(authorization, process.env.ACCESS_TOKEN_SECRECT);
-    } catch (e) {
-        //return res.status(401).send('unauthorized');
-        res.send(authorization)
-    }
+    } catch (e) {res.send(authorization)}
     var userId = decoded.id;
-    
-        return res.send(userId);
-  //  });
+    return res.send(userId);
   }
   return res.send(500);
  })
