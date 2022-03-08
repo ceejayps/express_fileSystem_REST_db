@@ -100,11 +100,11 @@ router.post('/register', async (ctx,res)=>{
                     res.json({status:"done"})
                   })
                   .catch((error) => {
-                      //res.status(500).send()
+                      return res.status(500).send()
                     console.error(error)
+
                   })
      
-        //console.log(amount) // data sent via the body for the request
         fs.appendFile(`Data/users/${UUID}.json`, JSON.stringify(body,null, 2), function (err) {
             if (err) throw err;
             console.log('Saved!');
