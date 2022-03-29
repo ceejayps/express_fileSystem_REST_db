@@ -24,7 +24,9 @@ console.log('unhandledRejection', error.message);
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
-app.get("/", (req,res)=>{})
+app.get("/", (req,res)=>{
+  return res.send("hell from the other sideeee!!")
+})
 
 
 const userRouter = require("./routes/users/users")
